@@ -6,14 +6,12 @@
     <title>汉字 - Chinese Characters (Hanzi) Practice</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Noto+Serif+SC:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        /* General Reset */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        /* Body Styles */
         body {
             font-family: 'Poppins', sans-serif;
             background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
@@ -23,7 +21,6 @@
             flex-direction: column;
         }
 
-        /* Main Container */
         .main {
             max-width: 1200px;
             margin: 0 auto;
@@ -31,7 +28,6 @@
             flex-grow: 1;
         }
 
-        /* Header Styles */
         .header {
             text-align: center;
             color: #2c3e50;
@@ -51,7 +47,6 @@
             color: #7f8c8d;
         }
 
-        /* Header Navigation Container */
         .header-nav-container {
             display: flex;
             align-items: center;
@@ -83,19 +78,18 @@
             box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
         }
 
-        .sticky-nav-container{
-            position:fixed;
-            top:0;
-            left:0;
-            right:0;
-            z-index:1000;
-            background:rgba(255, 255, 255, 0.95);
-            backdrop-filter:blut(10px);
-            box-shadow:0 4px 20px rgba(0, 0, 0, 0.1);
+        .sticky-nav-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
             padding: 15px 20px;
         }
 
-        /* Navigation Bar */
         #navbar {
             flex: 1;
             display: flex;
@@ -116,7 +110,7 @@
         #navbar a {
             background: white;
             color: #3498db;
-            padding: 12px 24px;
+            padding: 5px 24px;
             text-decoration: none;
             border-radius: 25px;
             font-weight: 600;
@@ -132,18 +126,15 @@
             box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
         }
 
-        .nav-content{
-            max-width:1200px;
-            margin:0 auto;
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
             display: flex;
             align-items: center;
-            justify-content:space-between;
-            gap:20px;
+            justify-content: space-between;
+            gap: 20px;
         }
 
-        
-
-        /* TTS Controls */
         .tts-controls {
             display: flex;
             justify-content: center;
@@ -198,7 +189,6 @@
             font-style: italic;
         }
 
-        /* Section Titles */
         .section-title {
             text-align: center;
             color: #2c3e50;
@@ -207,7 +197,6 @@
             font-family: 'Noto Serif SC', serif;
         }
 
-        /* Cards Container */
         .cards {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -216,7 +205,10 @@
             margin-bottom: 40px;
         }
 
-        /* Individual Card */
+        #phrases-grid {
+            grid-template-columns: 1fr;
+        }
+
         .card {
             background: white;
             border-radius: 15px;
@@ -233,7 +225,6 @@
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
         }
 
-        /* Sketch Area (Canvas) */
         .sketch {
             position: relative;
             padding: 20px;
@@ -242,7 +233,6 @@
 
         .paint {
             width: 100%;
-            height: 200px;
             border: 2px dashed #ddd;
             border-radius: 10px;
             cursor: crosshair;
@@ -269,7 +259,6 @@
             background: #c0392b;
         }
 
-        /* Card Content */
         .card_content {
             padding: 20px;
             text-align: center;
@@ -301,7 +290,22 @@
             color: #7f8c8d;
         }
 
-        /* Responsive Design */
+        /* Common Phrases Specific Styles */
+        .phrase-card .paint {
+            height: 250px;
+        }
+
+        .phrase-card .chinese-char {
+            font-size: 2rem;
+            word-wrap: break-word;
+            line-height: 1.6;
+        }
+
+        .phrase-card .char-info {
+            font-size: 0.9rem;
+            margin-top: 8px;
+        }
+
         @media (min-width: 992px) {
             .cards {
                 grid-template-columns: repeat(3, 1fr);
@@ -371,19 +375,18 @@
             <p>Click on characters to hear pronunciation</p>
         </div>
         
-        <!-- Header Navigation Container -->
-         <div class="sticky-nav-container">
-        <div class="nav-content">
-            <a href="../index.html" class="back-button">← Back to Main</a>
-            <nav id="navbar">
-                <a class="active" href="#pronouns">Pronouns</a>
-                <a href="#common-words">Common Words</a>
-                <a href="#questions">Questions & Answers</a>
-            </nav>
+        <div class="sticky-nav-container">
+            <div class="nav-content">
+                <a href="../index.html" class="back-button">← Back to Main</a>
+                <nav id="navbar">
+                    <a class="active" href="#pronouns">Pronouns</a>
+                    <a href="#common-words">Common Words</a>
+                    <a href="#questions">Questions & Answers</a>
+                    <a href="#phrases">Common Phrases</a>
+                </nav>
+            </div>
         </div>
-    </div>
         
-        <!-- TTS Controls -->
         <div class="tts-controls">
             <button id="tts-button" class="tts-button">
                 <span>🔊</span> Play All
@@ -398,13 +401,20 @@
             <h2 class="section-title">Pronouns<br/>我 你 他 她 我们 他们 都</h2>
             <ul class="cards" id="pronouns-grid"></ul>
         </section>
+
         <section id="common-words">
             <h2 class="section-title">Common Words<br/>也 你好 再见 学习 写 说 们</h2>
             <ul class="cards" id="common-words-grid"></ul>
         </section>
+
         <section id="questions">
             <h2 class="section-title">Questions & Answers<br/>问题 不 是 不是</h2>
             <ul class="cards" id="questions-grid"></ul>
+        </section>
+
+        <section id="phrases">
+            <h2 class="section-title">Common Phrases<br/>Practice Writing Full Phrases</h2>
+            <ul class="cards" id="phrases-grid"></ul>
         </section>
     </div>
 
@@ -441,6 +451,30 @@
                 { char: '不', pinyin: 'bù', meaning: 'not, no' },
                 { char: '是', pinyin: 'shì', meaning: 'yes, to be' },
                 { char: '不是', pinyin: 'bùshì', meaning: 'no, is not' }
+            ],
+            phrases: [
+                { char: '你好，最近怎么样？', pinyin: 'Nǐ hǎo, zuìjìn zěnyàng?', meaning: 'Hello, how have you been lately?' },
+                { char: '我很好，谢谢。你呢？', pinyin: 'Wǒ hěn hǎo, xièxie. Nǐ ne?', meaning: 'I\'m very well, thanks. How about you?' },
+                { char: '我也挺好的。', pinyin: 'Wǒ yě tǐng hǎo de.', meaning: 'I\'m also doing quite well.' },
+                { char: '你叫什么名字？', pinyin: 'Nǐ jiào shénme míngzi?', meaning: 'What is your name?' },
+                { char: '我叫王丽。你呢？', pinyin: 'Wǒ jiào Wánglì. Nǐ ne?', meaning: 'I\'m called Wang Li. How about you?' },
+                { char: '我叫张明。', pinyin: 'Wǒ jiào Zhāngmíng.', meaning: 'I\'m called Zhang Ming.' },
+                { char: '你多大了？', pinyin: 'Nǐ duō dà le?', meaning: 'How old are you?' },
+                { char: '我二十五岁。你呢？', pinyin: 'Wǒ èrshíwǔ suì. Nǐ ne?', meaning: 'I\'m 25 years old. How about you?' },
+                { char: '我三十岁。', pinyin: 'Wǒ sānshí suì.', meaning: 'I\'m 30 years old.' },
+                { char: '你今天做了什么？', pinyin: 'Nǐ jīntiān zuò le shénme?', meaning: 'What did you do today?' },
+                { char: '我工作了，还学了中文。你呢？', pinyin: 'Wǒ gōngzuò le, háishi xuéle Zhōngwén. Nǐ ne?', meaning: 'I worked and also studied Chinese. How about you?' },
+                { char: '我去了健身房，还做了饭。', pinyin: 'Wǒ qù le jiànshēnfáng, háishi zuò le fàn.', meaning: 'I went to the gym and also cooked.' },
+                { char: '你喜欢吃什么菜？', pinyin: 'Nǐ xǐhuān chī shénme cài?', meaning: 'What kind of food do you like to eat?' },
+                { char: '我喜欢吃川菜。你呢？', pinyin: 'Wǒ xǐhuān chī chuāncài. Nǐ ne?', meaning: 'I like eating Sichuan cuisine. How about you?' },
+                { char: '我喜欢吃粤菜。', pinyin: 'Wǒ xǐhuān chī Yuècài.', meaning: 'I like eating Cantonese cuisine.' },
+                { char: '你周末有什么计划？', pinyin: 'Nǐ zhōumò yǒu shénme jìhuà?', meaning: 'What plans do you have for the weekend?' },
+                { char: '我打算去看电影。你呢？', pinyin: 'Wǒ dǎsuàn qù kàn diànyǐng. Nǐ ne?', meaning: 'I\'m planning to go watch a movie. How about you?' },
+                { char: '我可能会和朋友一起吃饭。', pinyin: 'Wǒ kěnéng huì hé péngyou yīqǐ chīfàn.', meaning: 'I might have dinner with friends.' },
+                { char: '你好，我是李明。你叫什么名字？', pinyin: 'Nǐ hǎo, wǒ shì Lǐmíng. Nǐ jiào shénme míngzi?', meaning: 'Hello, I\'m Li Ming. What\'s your name?' },
+                { char: '你好，我叫王芳。很高兴认识你。', pinyin: 'Nǐ hǎo, wǒ jiào Wángfāng. Hěn gāoxìng rènshi nǐ.', meaning: 'Hello, I\'m Wang Fang. Nice to meet you.' },
+                { char: '我也很高兴认识你。再见！', pinyin: 'Wǒ yě hěn gāoxìng rènshi nǐ. Zàijiàn!', meaning: 'I\'m also happy to meet you. Goodbye!' },
+                { char: '再见！', pinyin: 'Zàijiàn!', meaning: 'Goodbye!' }
             ]
         };
 
@@ -448,13 +482,11 @@
         let voices = [];
         let selectedVoice = null;
 
-        // Initialize TTS voices
         function loadVoices() {
             voices = speechSynthesis.getVoices();
             const voiceSelector = document.getElementById('voice-selector');
             voiceSelector.innerHTML = '<option value="">Default Voice</option>';
             
-            // Filter for Chinese voices
             const chineseVoices = voices.filter(voice => 
                 voice.lang.startsWith('zh') || voice.lang.includes('Chinese')
             );
@@ -465,7 +497,6 @@
                 option.textContent = `${voice.name} (${voice.lang})`;
                 voiceSelector.appendChild(option);
                 
-                // Prefer Hanhan or Yaoyao voices if available
                 if (voice.name.toLowerCase().includes('hanhan') || voice.name.toLowerCase().includes('yaoyao')) {
                     selectedVoice = voice;
                     option.selected = true;
@@ -473,22 +504,24 @@
             });
         }
 
-        // Load voices when they become available
         if (speechSynthesis.onvoiceschanged !== undefined) {
             speechSynthesis.onvoiceschanged = loadVoices;
         }
 
-        function createCard(charData, index) {
+        function createCard(charData, index, isPhrase = false) {
+            const cardClass = isPhrase ? 'card phrase-card' : 'card';
+            const canvasHeight = isPhrase ? 'height="250"' : 'height="200"';
+            
             return `
                 <li class="cards_item">
-                    <div class="card">
+                    <div class="${cardClass}">
                         <div class="sketch">
-                            <canvas class="paint" width="300" height="200" data-index="${index}"></canvas>
+                            <canvas class="paint" width="300" ${canvasHeight} data-index="${index}"></canvas>
                             <button class="erase-button" data-canvas-index="${index}">Erase</button>
                         </div>
                         <div class="card_content">
                             <div class="chinese-char" data-pinyin="${charData.pinyin}" data-char="${charData.char}">${charData.char}</div>
-                            <div class="char-info">${charData.pinyin} - ${charData.meaning}</div>
+                            <div class="char-info">${charData.pinyin}<br/>${charData.meaning}</div>
                         </div>
                     </div>
                 </li>
@@ -499,17 +532,20 @@
             const pronounsGrid = document.getElementById('pronouns-grid');
             const commonWordsGrid = document.getElementById('common-words-grid');
             const questionsGrid = document.getElementById('questions-grid');
+            const phrasesGrid = document.getElementById('phrases-grid');
+            
             let index = 0;
             pronounsGrid.innerHTML = characters.pronouns.map(char => createCard(char, index++)).join('');
             commonWordsGrid.innerHTML = characters.commonWords.map(char => createCard(char, index++)).join('');
             questionsGrid.innerHTML = characters.questions.map(char => createCard(char, index++)).join('');
+            phrasesGrid.innerHTML = characters.phrases.map(char => createCard(char, index++, true)).join('');
+            
             addAudioEventListeners();
             addCanvasEventListeners();
             addEraseButtonListeners();
         }
 
         function speakChinese(char, pinyin) {
-            // Stop any currently playing speech
             if (speechSynthesis.speaking) {
                 speechSynthesis.cancel();
             }
@@ -519,7 +555,6 @@
                 utterance.lang = 'zh-CN';
                 utterance.rate = 0.8;
                 
-                // Use selected voice if available
                 if (selectedVoice) {
                     utterance.voice = selectedVoice;
                 }
@@ -544,13 +579,11 @@
             });
         }
 
-        // Play all characters in sequence
         function playAllCharacters() {
             const ttsButton = document.getElementById('tts-button');
             ttsButton.disabled = true;
             
-            // Get all characters
-            const allChars = [...characters.pronouns, ...characters.commonWords, ...characters.questions];
+            const allChars = [...characters.pronouns, ...characters.commonWords, ...characters.questions, ...characters.phrases];
             let index = 0;
             
             function speakNext() {
@@ -558,7 +591,6 @@
                     const charData = allChars[index];
                     speakChinese(charData.char, charData.pinyin);
                     
-                    // Highlight the current character being spoken
                     const charElements = document.querySelectorAll('.chinese-char');
                     charElements.forEach(el => el.style.backgroundColor = '');
                     
@@ -570,14 +602,12 @@
                         currentCharElement.style.backgroundColor = '#e8f5e9';
                     }
                     
-                    // Wait for speech to finish before moving to next character
                     speechSynthesis.onend = function() {
                         index++;
-                        setTimeout(speakNext, 500); // Small delay between characters
+                        setTimeout(speakNext, 500);
                     };
                 } else {
                     ttsButton.disabled = false;
-                    // Remove highlighting
                     document.querySelectorAll('.chinese-char').forEach(el => {
                         el.style.backgroundColor = '';
                     });
@@ -587,7 +617,6 @@
             speakNext();
         }
 
-        // Rest of your existing JavaScript (canvas, navigation, etc.)
         let isDrawing = false;
         let canvasesContexts = [];
         let lastX = 0;
@@ -598,9 +627,16 @@
             canvasElements.forEach((canvas, index) => {
                 const ctx = canvas.getContext('2d');
                 canvasesContexts[index] = ctx;
+                
+                // Scale canvas to match display size
+                const rect = canvas.getBoundingClientRect();
+                canvas.width = rect.width;
+                canvas.height = rect.height;
+                
                 ctx.strokeStyle = '#333';
                 ctx.lineWidth = 3;
                 ctx.lineCap = 'round';
+                ctx.lineJoin = 'round';
             });
         }
 
@@ -617,31 +653,54 @@
             });
         }
 
+        function getCanvasCoordinates(canvas, clientX, clientY) {
+            const rect = canvas.getBoundingClientRect();
+            const scaleX = canvas.width / rect.width;
+            const scaleY = canvas.height / rect.height;
+            
+            return {
+                x: (clientX - rect.left) * scaleX,
+                y: (clientY - rect.top) * scaleY
+            };
+        }
+
         function startDrawing(e) {
             isDrawing = true;
-            const rect = e.target.getBoundingClientRect();
-            const clientX = e.clientX || e.touches[0].clientX;
-            const clientY = e.clientY || e.touches[0].clientY;
-            lastX = clientX - rect.left;
-            lastY = clientY - rect.top;
-            const ctx = canvasesContexts[parseInt(e.target.dataset.index)];
-            ctx.beginPath();
-            ctx.moveTo(lastX, lastY);
+            const canvas = e.target;
+            const clientX = e.clientX || (e.touches && e.touches[0].clientX);
+            const clientY = e.clientY || (e.touches && e.touches[0].clientY);
+            
+            if (clientX && clientY) {
+                const coords = getCanvasCoordinates(canvas, clientX, clientY);
+                lastX = coords.x;
+                lastY = coords.y;
+                
+                const ctx = canvasesContexts[parseInt(canvas.dataset.index)];
+                ctx.beginPath();
+                ctx.moveTo(lastX, lastY);
+            }
         }
 
         function draw(e) {
             if (!isDrawing) return;
             e.preventDefault();
-            const rect = e.target.getBoundingClientRect();
-            const clientX = e.clientX || e.touches[0].clientX;
-            const clientY = e.clientY || e.touches[0].clientY;
-            const currentX = clientX - rect.left;
-            const currentY = clientY - rect.top;
-            const ctx = canvasesContexts[parseInt(e.target.dataset.index)];
-            ctx.lineTo(currentX, currentY);
-            ctx.stroke();
-            lastX = currentX;
-            lastY = currentY;
+            
+            const canvas = e.target;
+            const clientX = e.clientX || (e.touches && e.touches[0].clientX);
+            const clientY = e.clientY || (e.touches && e.touches[0].clientY);
+            
+            if (clientX && clientY) {
+                const coords = getCanvasCoordinates(canvas, clientX, clientY);
+                const currentX = coords.x;
+                const currentY = coords.y;
+                
+                const ctx = canvasesContexts[parseInt(canvas.dataset.index)];
+                ctx.lineTo(currentX, currentY);
+                ctx.stroke();
+                
+                lastX = currentX;
+                lastY = currentY;
+            }
         }
 
         function stopDrawing() {
@@ -652,17 +711,24 @@
             e.preventDefault();
             const touch = e.touches[0];
             const target = e.target;
-            const mouseEvent = new MouseEvent(
-                e.type === 'touchstart' ? 'mousedown' :
-                e.type === 'touchmove' ? 'mousemove' : 'mouseup',
-                {
+            
+            if (e.type === 'touchstart') {
+                const mouseDownEvent = new MouseEvent('mousedown', {
                     clientX: touch.clientX,
                     clientY: touch.clientY,
                     bubbles: true,
                     cancelable: true
-                }
-            );
-            target.dispatchEvent(mouseEvent);
+                });
+                target.dispatchEvent(mouseDownEvent);
+            } else if (e.type === 'touchmove') {
+                const mouseMoveEvent = new MouseEvent('mousemove', {
+                    clientX: touch.clientX,
+                    clientY: touch.clientY,
+                    bubbles: true,
+                    cancelable: true
+                });
+                target.dispatchEvent(mouseMoveEvent);
+            }
         }
 
         function clearCanvas(index) {
@@ -705,10 +771,8 @@
             initializeCanvasContexts();
             loadVoices();
             
-            // Add event listener for the TTS button
             document.getElementById('tts-button').addEventListener('click', playAllCharacters);
             
-            // Add event listener for voice selection
             document.getElementById('voice-selector').addEventListener('change', function() {
                 const voiceName = this.value;
                 if (voiceName) {
@@ -717,6 +781,11 @@
                     selectedVoice = null;
                 }
             });
+        });
+
+        // Reinitialize canvas contexts on window resize
+        window.addEventListener('resize', function() {
+            setTimeout(initializeCanvasContexts, 100);
         });
     </script>
 </body>
