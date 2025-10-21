@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chinese Food & Drink Practice</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Noto+Serif+SC:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+            min-height: 100vh;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            flex-grow: 1;
+        }
+
+        .header {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            padding-top: 20px;
+        }
+
+        .header h1 {
+            font-size: 2.8rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #3498db;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            color: #7f8c8d;
+        }
+
+        .header-nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .back-button {
+            background: #3498db;
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e0e0e0;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+        }
+
+        .back-button:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+        }
+
+        .sticky-nav-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            padding: 15px 20px;
+        }
+
+        #navbar {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 15px 20px;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            margin: 0;
+            max-width: none;
+        }
+
+        #navbar a {
+            background: white;
+            color: #3498db;
+            padding: 5px 24px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e0e0e0;
+        }
+
+        #navbar a:hover, #navbar a.active {
+            background: #3498db;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .tts-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .tts-button {
+            background: #2ecc71;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tts-button:hover {
+            background: #27ae60;
+            transform: translateY(-2px);
+        }
+
+        .tts-button:disabled {
+            background: #95a5a6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .voice-selector {
+            padding: 10px 15px;
+            border-radius: 25px;
+            border: 1px solid #ddd;
+            background: white;
+            color: #333;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .tts-info {
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .section-title {
+            text-align: center;
+            color: #2c3e50;
+            font-size: 1.8rem;
+            margin: 60px 0 30px 0;
+            font-family: 'Noto Serif SC', serif;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            list-style: none;
+            margin-bottom: 40px;
+        }
+
+        #common-phrases-grid {
+            grid-template-columns: 1fr;
+        }
+
+        /* Questions section - one card per row */
+        #questions-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #f0f0f0;
+        }
+
+        /* Question cards - full width */
+        .question-card {
+            width: 100%;
+            max-width: 100%;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        .sketch {
+            position: relative;
+            padding: 20px;
+            background: #f8f9fa;
+        }
+
+        .paint {
+            width: 100%;
+            border: 2px dashed #ddd;
+            border-radius: 10px;
+            cursor: crosshair;
+            background: white;
+            touch-action: none;
+        }
+
+        /* Larger canvas for question cards */
+        .question-card .paint {
+            height: 300px;
+        }
+
+        .erase-button {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 12px;
+            z-index: 10;
+            transition: background 0.2s ease;
+        }
+
+        .erase-button:hover {
+            background: #c0392b;
+        }
+
+        .card_content {
+            padding: 20px;
+            text-align: center;
+            background: white;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .chinese-char {
+            font-size: 3.5rem;
+            font-weight: bold;
+            color: #3498db;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            user-select: none;
+            margin-bottom: 10px;
+            font-family: 'Noto Serif SC', serif;
+        }
+
+        .chinese-char:hover {
+            color: #e74c3c;
+            transform: scale(1.05);
+        }
+
+        .char-info {
+            font-size: 1rem;
+            color: #7f8c8d;
+        }
+
+        /* Common Phrases Specific Styles */
+        .phrase-card .paint {
+            height: 250px;
+        }
+
+        .phrase-card .chinese-char {
+            font-size: 2rem;
+            word-wrap: break-word;
+            line-height: 1.6;
+        }
+
+        .phrase-card .char-info {
+            font-size: 0.9rem;
+            margin-top: 8px;
+        }
+
+        /* Question card specific styles */
+        .question-card .chinese-char {
+            font-size: 2.5rem;
+            word-wrap: break-word;
+            line-height: 1.6;
+        }
+
+        .question-card .char-info {
+            font-size: 1.1rem;
+            margin-top: 10px;
+        }
+
+        @media (min-width: 992px) {
+            .cards {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 991px) {
+            .cards {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.2rem;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .header-nav-container {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .back-button {
+                align-self: flex-start;
+                margin-bottom: 10px;
+            }
+            
+            #navbar {
+                width: 100%;
+                justify-content: center;
+            }
+
+            #navbar a {
+                padding: 10px 18px;
+                font-size: 0.9rem;
+            }
+
+            .tts-controls {
+                flex-direction: column;
+            }
+
+            .question-card .chinese-char {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .main {
+                padding: 10px;
+            }
+
+            #navbar {
+                padding: 10px;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .question-card .chinese-char {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div class="header">
+            <h1><br>Chinese Food & Drink Practice</h1>
+            <p>Draw in the white canvas area to practice writing</p>
+            <p>Click on characters to hear pronunciation</p>
+        </div>
+        
+        <div class="sticky-nav-container">
+            <div class="nav-content">
+                <a href="../index.html" class="back-button">← Back to Main</a>
+                <nav id="navbar">
+                    <a class="active" href="#foods-drinks">Foods & Drinks</a>
+                    <a href="#starting-phrases">Starting Phrases</a>
+                    <a href="#common-phrases">Common Phrases</a>
+                    <a href="#questions">Questions</a>
+                </nav>
+            </div>
+        </div>
+        
+        <div class="tts-controls">
+            <button id="tts-button" class="tts-button">
+                <span>🔊</span> Play All
+            </button>
+            <select id="voice-selector" class="voice-selector">
+                <option value="">Default Voice</option>
+            </select>
+        </div>
+        <p class="tts-info">Click on any character to hear its pronunciation (I prefer Hanhan or Yaoyao's voice)</p>
+        
+        <section id="foods-drinks">
+            <h2 class="section-title">Foods & Drinks<br/>食物 饮料</h2>
+            <ul class="cards" id="foods-drinks-grid"></ul>
+        </section>
+
+        <section id="starting-phrases">
+            <h2 class="section-title">Starting Phrases<br/>起始短语</h2>
+            <ul class="cards" id="starting-phrases-grid"></ul>
+        </section>
+
+        <section id="common-phrases">
+            <h2 class="section-title">Common Phrases<br/>常用短语</h2>
+            <ul class="cards" id="common-phrases-grid"></ul>
+        </section>
+
+        <section id="questions">
+            <h2 class="section-title">Questions<br/>问题</h2>
+            <ul class="cards" id="questions-grid"></ul>
+        </section>
+    </div>
+
+    <script>
+        const characters = {
+            foodsDrinks: [
+                { char: '米饭', pinyin: 'mǐfàn', meaning: 'rice' },
+                { char: '面条', pinyin: 'miàntiáo', meaning: 'noodles' },
+                { char: '面包', pinyin: 'miànbāo', meaning: 'bread' },
+                { char: '饺子', pinyin: 'jiǎozi', meaning: 'dumplings' },
+                { char: '包子', pinyin: 'bāozi', meaning: 'steamed buns' },
+                { char: '鸡肉', pinyin: 'jīròu', meaning: 'chicken' },
+                { char: '牛肉', pinyin: 'niúròu', meaning: 'beef' },
+                { char: '猪肉', pinyin: 'zhūròu', meaning: 'pork' },
+                { char: '鱼', pinyin: 'yú', meaning: 'fish' },
+                { char: '蔬菜', pinyin: 'shūcài', meaning: 'vegetables' },
+                { char: '水果', pinyin: 'shuǐguǒ', meaning: 'fruit' },
+                { char: '苹果', pinyin: 'píngguǒ', meaning: 'apple' },
+                { char: '香蕉', pinyin: 'xiāngjiāo', meaning: 'banana' },
+                { char: '水', pinyin: 'shuǐ', meaning: 'water' },
+                { char: '茶', pinyin: 'chá', meaning: 'tea' },
+                { char: '咖啡', pinyin: 'kāfēi', meaning: 'coffee' },
+                { char: '牛奶', pinyin: 'niúnǎi', meaning: 'milk' },
+                { char: '果汁', pinyin: 'guǒzhī', meaning: 'juice' },
+                { char: '啤酒', pinyin: 'píjiǔ', meaning: 'beer' },
+                { char: '红酒', pinyin: 'hóngjiǔ', meaning: 'red wine' }
+            ],
+            startingPhrases: [
+    { char: '我可以要', pinyin: 'wǒ kěyǐ yào', meaning: 'Can I have...' },
+    { char: '给我', pinyin: 'gěi wǒ', meaning: 'Give me...' },
+    { char: '我买', pinyin: 'wǒ mǎi', meaning: 'I buy...' },
+    { char: '我喝', pinyin: 'wǒ hē', meaning: 'I drink...' },
+    { char: '我吃', pinyin: 'wǒ chī', meaning: 'I eat...' },
+    { char: '我想要', pinyin: 'wǒ xiǎng yào', meaning: 'I want to...' },
+    { char: '我想喝', pinyin: 'wǒ xiǎng hē', meaning: 'I want to drink...' },
+    { char: '我想买', pinyin: 'wǒ xiǎng mǎi', meaning: 'I want to buy...' },
+    { char: '我想吃', pinyin: 'wǒ xiǎng chī', meaning: 'I want to eat...' },
+    { char: '喝', pinyin: 'hē', meaning: 'to drink' },
+    { char: '吃', pinyin: 'chī', meaning: 'to eat' },
+    { char: '要', pinyin: 'yào', meaning: 'to have/to want' },
+    { char: '喜欢', pinyin: 'xǐhuān', meaning: 'to like' },
+    { char: '不喜欢', pinyin: 'bù xǐhuān', meaning: 'to not like' },
+    { char: '想', pinyin: 'xiǎng', meaning: 'to want' }
+],
+            commonPhrases: [
+                { char: '我想吃米饭。', pinyin: 'Wǒ xiǎng chī mǐfàn.', meaning: 'I want to eat rice.' },
+                { char: '我可以要一杯水吗？', pinyin: 'Wǒ kěyǐ yào yī bēi shuǐ ma?', meaning: 'Can I have a glass of water?' },
+                { char: '给我一碗面条。', pinyin: 'Gěi wǒ yī wǎn miàntiáo.', meaning: 'Give me a bowl of noodles.' },
+                { char: '我买一个苹果。', pinyin: 'Wǒ mǎi yī gè píngguǒ.', meaning: 'I buy an apple.' },
+                { char: '我喝咖啡。', pinyin: 'Wǒ hē kāfēi.', meaning: 'I drink coffee.' },
+                { char: '我想吃饺子和蔬菜。', pinyin: 'Wǒ xiǎng chī jiǎozi hé shūcài.', meaning: 'I want to eat dumplings and vegetables.' },
+                { char: '我可以要一杯茶吗？', pinyin: 'Wǒ kěyǐ yào yī bēi chá ma?', meaning: 'Can I have a cup of tea?' },
+                { char: '给我一瓶啤酒。', pinyin: 'Gěi wǒ yī píng píjiǔ.', meaning: 'Give me a bottle of beer.' },
+                { char: '我买三个包子。', pinyin: 'Wǒ mǎi sān gè bāozi.', meaning: 'I buy three steamed buns.' },
+                { char: '我喝牛奶和果汁。', pinyin: 'Wǒ hē niúnǎi hé guǒzhī.', meaning: 'I drink milk and juice.' },
+                { char: '我想吃牛肉和米饭。', pinyin: 'Wǒ xiǎng chī niúròu hé mǐfàn.', meaning: 'I want to eat beef and rice.' },
+                { char: '我可以要一杯红酒吗？', pinyin: 'Wǒ kěyǐ yào yī bēi hóngjiǔ ma?', meaning: 'Can I have a glass of red wine?' },
+                { char: '给我一些水果。', pinyin: 'Gěi wǒ yīxiē shuǐguǒ.', meaning: 'Give me some fruit.' },
+                { char: '我买鸡肉和蔬菜。', pinyin: 'Wǒ mǎi jīròu hé shūcài.', meaning: 'I buy chicken and vegetables.' },
+                { char: '我喝茶和咖啡。', pinyin: 'Wǒ hē chá hé kāfēi.', meaning: 'I drink tea and coffee.' }
+            ],
+           questions: [
+    { char: '我可以要[食物/饮料]吗？', pinyin: 'Wǒ kěyǐ yào [shíwù/yǐnliào] ma?', meaning: 'Can I have [food/drink]?' },
+    { char: '你可以吃[食物]吗？', pinyin: 'Nǐ kěyǐ chī [shíwù] ma?', meaning: 'Can you eat [food]?' },
+    { char: '我可以买三个[食物/饮料]吗？', pinyin: 'Wǒ kěyǐ mǎi sān gè [shíwù/yǐnliào] ma?', meaning: 'Can I buy three [food/drink]?' },
+    { char: '你想喝什么？', pinyin: 'Nǐ xiǎng hē shénme?', meaning: 'What do you want to drink?' },
+    { char: '你想吃什么？', pinyin: 'Nǐ xiǎng chī shénme?', meaning: 'What do you want to eat?' },
+    { char: '你想买什么？', pinyin: 'Nǐ xiǎng mǎi shénme?', meaning: 'What do you want to buy?' },
+    { char: '这个多少钱？', pinyin: 'Zhège duōshǎo qián?', meaning: 'How much is this?' },
+    { char: '你有[食物/饮料]吗？', pinyin: 'Nǐ yǒu [shíwù/yǐnliào] ma?', meaning: 'Do you have [food/drink]?' },
+    { char: '你喜欢吃什么？', pinyin: 'Nǐ xǐhuān chī shénme?', meaning: 'What do you like to eat?' },
+    { char: '你喜欢喝什么？', pinyin: 'Nǐ xǐhuān hē shénme?', meaning: 'What do you like to drink?' },
+    { char: '你喝水吗？', pinyin: 'Nǐ hē shuǐ ma?', meaning: 'Do you (singular) drink water?' },
+    { char: '你吃饺子吗？', pinyin: 'Nǐ chī jiǎozi ma?', meaning: 'Do you (singular) eat dumplings?' },
+    { char: '他们吃水果吗？', pinyin: 'Tāmen chī shuǐguǒ ma?', meaning: 'Do they eat fruit?' },
+    { char: '他们喜欢果汁吗？', pinyin: 'Tāmen xǐhuān guǒzhī ma?', meaning: 'Do they like juice?' },
+    { char: '她喜欢果汁还是茶？', pinyin: 'Tā xǐhuān guǒzhī háishì chá?', meaning: 'Does she like juice or tea?' }
+]
+        };
+
+        let currentPlayingAudio = null;
+        let voices = [];
+        let selectedVoice = null;
+
+        function loadVoices() {
+            voices = speechSynthesis.getVoices();
+            const voiceSelector = document.getElementById('voice-selector');
+            voiceSelector.innerHTML = '<option value="">Default Voice</option>';
+            
+            const chineseVoices = voices.filter(voice => 
+                voice.lang.startsWith('zh') || voice.lang.includes('Chinese')
+            );
+            
+            chineseVoices.forEach(voice => {
+                const option = new Option(`${voice.name} (${voice.lang})`, voice.name);
+                voiceSelector.appendChild(option);
+                
+                if (voice.name.toLowerCase().includes('hanhan') || voice.name.toLowerCase().includes('yaoyao')) {
+                    selectedVoice = voice;
+                    option.selected = true;
+                }
+            });
+        }
+
+        if (speechSynthesis.onvoiceschanged !== undefined) {
+            speechSynthesis.onvoiceschanged = loadVoices;
+        }
+
+        function createCard(charData, index, isPhrase = false, isQuestion = false) {
+            const cardClass = isQuestion ? 'card question-card' : (isPhrase ? 'card phrase-card' : 'card');
+            const canvasHeight = isQuestion ? 'height="300"' : (isPhrase ? 'height="250"' : 'height="200"');
+            
+            return `
+                <li class="cards_item">
+                    <div class="${cardClass}">
+                        <div class="sketch">
+                            <canvas class="paint" width="300" ${canvasHeight} data-index="${index}"></canvas>
+                            <button class="erase-button" data-canvas-index="${index}">Erase</button>
+                        </div>
+                        <div class="card_content">
+                            <div class="chinese-char" data-pinyin="${charData.pinyin}" data-char="${charData.char}">${charData.char}</div>
+                            <div class="char-info">${charData.pinyin}<br/>${charData.meaning}</div>
+                        </div>
+                    </div>
+                </li>
+            `;
+        }
+
+        function generateCards() {
+            const foodsDrinksGrid = document.getElementById('foods-drinks-grid');
+            const startingPhrasesGrid = document.getElementById('starting-phrases-grid');
+            const commonPhrasesGrid = document.getElementById('common-phrases-grid');
+            const questionsGrid = document.getElementById('questions-grid');
+            
+            let index = 0;
+            foodsDrinksGrid.innerHTML = characters.foodsDrinks.map(char => createCard(char, index++)).join('');
+            startingPhrasesGrid.innerHTML = characters.startingPhrases.map(char => createCard(char, index++)).join('');
+            commonPhrasesGrid.innerHTML = characters.commonPhrases.map(char => createCard(char, index++, true)).join('');
+            questionsGrid.innerHTML = characters.questions.map(char => createCard(char, index++, false, true)).join('');
+            
+            addAudioEventListeners();
+            addCanvasEventListeners();
+            addEraseButtonListeners();
+        }
+
+        function speakChinese(char, pinyin) {
+            if (speechSynthesis.speaking) {
+                speechSynthesis.cancel();
+            }
+            
+            if ('speechSynthesis' in window) {
+                const utterance = new SpeechSynthesisUtterance(char);
+                utterance.lang = 'zh-CN';
+                utterance.rate = 0.8;
+                
+                if (selectedVoice) {
+                    utterance.voice = selectedVoice;
+                }
+                
+                utterance.onend = function() {
+                    document.getElementById('tts-button').disabled = false;
+                };
+                
+                speechSynthesis.speak(utterance);
+            } else {
+                console.warn('Text-to-speech not supported in this browser.');
+            }
+        }
+
+        function addAudioEventListeners() {
+            document.querySelectorAll('.chinese-char').forEach(charElement => {
+                charElement.addEventListener('click', function() {
+                    const char = this.getAttribute('data-char');
+                    const pinyin = this.getAttribute('data-pinyin');
+                    speakChinese(char, pinyin);
+                });
+            });
+        }
+
+        function playAllCharacters() {
+            const ttsButton = document.getElementById('tts-button');
+            ttsButton.disabled = true;
+            
+            const allChars = [...characters.foodsDrinks, ...characters.startingPhrases, ...characters.commonPhrases, ...characters.questions];
+            let index = 0;
+            
+            function speakNext() {
+                if (index < allChars.length) {
+                    const charData = allChars[index];
+                    speakChinese(charData.char, charData.pinyin);
+                    
+                    const charElements = document.querySelectorAll('.chinese-char');
+                    charElements.forEach(el => el.style.backgroundColor = '');
+                    
+                    const currentCharElement = Array.from(charElements).find(
+                        el => el.getAttribute('data-char') === charData.char
+                    );
+                    
+                    if (currentCharElement) {
+                        currentCharElement.style.backgroundColor = '#e8f5e9';
+                    }
+                    
+                    speechSynthesis.onend = function() {
+                        index++;
+                        setTimeout(speakNext, 500);
+                    };
+                } else {
+                    ttsButton.disabled = false;
+                    document.querySelectorAll('.chinese-char').forEach(el => {
+                        el.style.backgroundColor = '';
+                    });
+                }
+            }
+            
+            speakNext();
+        }
+
+        let isDrawing = false;
+        let canvasesContexts = [];
+        let lastX = 0;
+        let lastY = 0;
+
+        function initializeCanvasContexts() {
+            const canvasElements = document.querySelectorAll('.paint');
+            canvasElements.forEach((canvas, index) => {
+                const ctx = canvas.getContext('2d');
+                canvasesContexts[index] = ctx;
+                
+                // Scale canvas to match display size
+                const rect = canvas.getBoundingClientRect();
+                canvas.width = rect.width;
+                canvas.height = rect.height;
+                
+                ctx.strokeStyle = '#333';
+                ctx.lineWidth = 3;
+                ctx.lineCap = 'round';
+                ctx.lineJoin = 'round';
+            });
+        }
+
+        function addCanvasEventListeners() {
+            document.querySelectorAll('.paint').forEach(canvas => {
+                canvas.addEventListener('mousedown', startDrawing);
+                canvas.addEventListener('mousemove', draw);
+                canvas.addEventListener('mouseup', stopDrawing);
+                canvas.addEventListener('mouseout', stopDrawing);
+                canvas.addEventListener('touchstart', handleTouch);
+                canvas.addEventListener('touchmove', handleTouch);
+                canvas.addEventListener('touchend', stopDrawing);
+                canvas.addEventListener('touchcancel', stopDrawing);
+            });
+        }
+
+        function getCanvasCoordinates(canvas, clientX, clientY) {
+            const rect = canvas.getBoundingClientRect();
+            const scaleX = canvas.width / rect.width;
+            const scaleY = canvas.height / rect.height;
+            
+            return {
+                x: (clientX - rect.left) * scaleX,
+                y: (clientY - rect.top) * scaleY
+            };
+        }
+
+        function startDrawing(e) {
+            isDrawing = true;
+            const canvas = e.target;
+            const clientX = e.clientX || (e.touches && e.touches[0].clientX);
+            const clientY = e.clientY || (e.touches && e.touches[0].clientY);
+            
+            if (clientX && clientY) {
+                const coords = getCanvasCoordinates(canvas, clientX, clientY);
+                lastX = coords.x;
+                lastY = coords.y;
+                
+                const ctx = canvasesContexts[parseInt(canvas.dataset.index)];
+                ctx.beginPath();
+                ctx.moveTo(lastX, lastY);
+            }
+        }
+
+        function draw(e) {
+            if (!isDrawing) return;
+            e.preventDefault();
+            
+            const canvas = e.target;
+            const clientX = e.clientX || (e.touches && e.touches[0].clientX);
+            const clientY = e.clientY || (e.touches && e.touches[0].clientY);
+            
+            if (clientX && clientY) {
+                const coords = getCanvasCoordinates(canvas, clientX, clientY);
+                const currentX = coords.x;
+                const currentY = coords.y;
+                
+                const ctx = canvasesContexts[parseInt(canvas.dataset.index)];
+                ctx.lineTo(currentX, currentY);
+                ctx.stroke();
+                
+                lastX = currentX;
+                lastY = currentY;
+            }
+        }
+
+        function stopDrawing() {
+            isDrawing = false;
+        }
+
+        function handleTouch(e) {
+            e.preventDefault();
+            const touch = e.touches[0];
+            const target = e.target;
+            
+            if (e.type === 'touchstart') {
+                const mouseDownEvent = new MouseEvent('mousedown', {
+                    clientX: touch.clientX,
+                    clientY: touch.clientY,
+                    bubbles: true,
+                    cancelable: true
+                });
+                target.dispatchEvent(mouseDownEvent);
+            } else if (e.type === 'touchmove') {
+                const mouseMoveEvent = new MouseEvent('mousemove', {
+                    clientX: touch.clientX,
+                    clientY: touch.clientY,
+                    bubbles: true,
+                    cancelable: true
+                });
+                target.dispatchEvent(mouseMoveEvent);
+            }
+        }
+
+        function clearCanvas(index) {
+            const canvas = document.querySelector(`canvas[data-index="${index}"]`);
+            if (canvas) {
+                const ctx = canvasesContexts[index];
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+            }
+        }
+
+        function addEraseButtonListeners() {
+            document.querySelectorAll('.erase-button').forEach(button => {
+                button.addEventListener('click', function() {
+                    const canvasIndex = parseInt(this.dataset.canvasIndex);
+                    clearCanvas(canvasIndex);
+                });
+            });
+        }
+
+        document.querySelectorAll('#navbar a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    const navbarHeight = document.getElementById('navbar').offsetHeight;
+                    const offsetTop = targetElement.offsetTop - navbarHeight;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                    document.querySelectorAll('#navbar a').forEach(a => a.classList.remove('active'));
+                    this.classList.add('active');
+                }
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            generateCards();
+            initializeCanvasContexts();
+            loadVoices();
+            
+            document.getElementById('tts-button').addEventListener('click', playAllCharacters);
+            
+            document.getElementById('voice-selector').addEventListener('change', function() {
+                const voiceName = this.value;
+                if (voiceName) {
+                    selectedVoice = voices.find(voice => voice.name === voiceName);
+                } else {
+                    selectedVoice = null;
+                }
+            });
+        });
+
+        // Reinitialize canvas contexts on window resize
+        window.addEventListener('resize', function() {
+            setTimeout(initializeCanvasContexts, 100);
+        });
+    </script>
+</body>
+</html>
