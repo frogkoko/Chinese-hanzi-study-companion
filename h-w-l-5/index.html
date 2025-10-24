@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chinese Vocabulary Practice - Animals, Plants, Countries & Cities</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Noto+Serif+SC:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+            min-height: 100vh;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            flex-grow: 1;
+        }
+
+        .header {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            padding-top: 20px;
+        }
+
+        .header h1 {
+            font-size: 2.8rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #27ae60;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            color: #7f8c8d;
+        }
+
+        .sticky-nav-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            padding: 15px 20px;
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .back-button {
+            background: #27ae60;
+            color: white;
+            padding: 10px 10px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+        }
+
+        .back-button:hover {
+            background: #229954;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(39, 174, 96, 0.3);
+        }
+
+        #navbar {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        #navbar a {
+            background: white;
+            color: #27ae60;
+            padding: 5px 24px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e0e0e0;
+        }
+
+        #navbar a:hover, #navbar a.active {
+            background: #27ae60;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(39, 174, 96, 0.3);
+        }
+
+        .tts-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            margin-top: 80px;
+            padding: 15px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .tts-button {
+            background: #2ecc71;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tts-button:hover {
+            background: #27ae60;
+            transform: translateY(-2px);
+        }
+
+        .tts-button:disabled {
+            background: #95a5a6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .voice-selector {
+            padding: 10px 15px;
+            border-radius: 25px;
+            border: 1px solid #ddd;
+            background: white;
+            color: #333;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .tts-info {
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .section-title {
+            text-align: center;
+            color: #2c3e50;
+            font-size: 1.8rem;
+            margin: 60px 0 30px 0;
+            font-family: 'Noto Serif SC', serif;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            list-style: none;
+            margin-bottom: 40px;
+        }
+
+        #sentences-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #f0f0f0;
+        }
+
+        .sentence-card {
+            width: 100%;
+            max-width: 100%;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        .sketch {
+            position: relative;
+            padding: 20px;
+            background: #f8f9fa;
+        }
+
+        .paint {
+            width: 100%;
+            border: 2px dashed #ddd;
+            border-radius: 10px;
+            cursor: crosshair;
+            background: white;
+            touch-action: none;
+            height: 200px;
+        }
+
+        .sentence-card .paint {
+            height: 250px;
+        }
+
+        .erase-button {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 12px;
+            z-index: 10;
+            transition: background 0.2s ease;
+        }
+
+        .erase-button:hover {
+            background: #c0392b;
+        }
+
+        .card_content {
+            padding: 20px;
+            text-align: center;
+            background: white;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .chinese-char {
+            font-size: 3.5rem;
+            font-weight: bold;
+            color: #27ae60;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            user-select: none;
+            margin-bottom: 10px;
+            font-family: 'Noto Serif SC', serif;
+        }
+
+        .chinese-char:hover {
+            color: #e74c3c;
+            transform: scale(1.05);
+        }
+
+        .char-info {
+            font-size: 1rem;
+            color: #7f8c8d;
+        }
+
+        .sentence-card .chinese-char {
+            font-size: 2rem;
+            word-wrap: break-word;
+            line-height: 1.6;
+        }
+
+        .sentence-card .char-info {
+            font-size: 0.9rem;
+            margin-top: 8px;
+        }
+
+        @media (min-width: 992px) {
+            .cards {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 991px) {
+            .cards {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.2rem;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-content {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .back-button {
+                align-self: flex-start;
+            }
+
+            #navbar {
+                width: 100%;
+                justify-content: center;
+            }
+
+            #navbar a {
+                padding: 10px 18px;
+                font-size: 0.9rem;
+            }
+
+            .tts-controls {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .main {
+                padding: 10px;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div class="header">
+            <h1><br>Chinese Vocabulary Practice</h1>
+            <p>Animals • Plants • Countries • Cities</p>
+            <p>Draw in the white canvas area to practice writing</p>
+            <p>Click on characters to hear pronunciation</p>
+        </div>
+        
+        <div class="sticky-nav-container">
+            <div class="nav-content">
+                <a href="../index.html" class="back-button">← Back to Main</a>
+                <nav id="navbar">
+                    <a class="active" href="#animals">Animals</a>
+                    <a href="#plants">Plants</a>
+                    <a href="#countries">Countries</a>
+                    <a href="#cities">Cities</a>
+                    <a href="#sentences">Sentences</a>
+                </nav>
+            </div>
+        </div>
+        
+        <div class="tts-controls">
+            <button id="tts-button" class="tts-button">
+                <span>🔊</span> Play All
+            </button>
+            <select id="voice-selector" class="voice-selector">
+                <option value="">Default Voice</option>
+            </select>
+        </div>
+        <p class="tts-info">Click on any character to hear its pronunciation</p>
+        
+        <section id="animals">
+            <h2 class="section-title">Animals<br/>动物</h2>
+            <ul class="cards" id="animals-grid"></ul>
+        </section>
+
+        <section id="plants">
+            <h2 class="section-title">Plants<br/>植物</h2>
+            <ul class="cards" id="plants-grid"></ul>
+        </section>
+
+        <section id="countries">
+            <h2 class="section-title">Countries<br/>国家</h2>
+            <ul class="cards" id="countries-grid"></ul>
+        </section>
+
+        <section id="cities">
+            <h2 class="section-title">Cities<br/>城市</h2>
+            <ul class="cards" id="cities-grid"></ul>
+        </section>
+
+        <section id="sentences">
+            <h2 class="section-title">Example Sentences<br/>例句</h2>
+            <ul class="cards" id="sentences-grid"></ul>
+        </section>
+    </div>
+
+    <script>
+        const characters = {
+            animals: [
+                { char: '狗', pinyin: 'gǒu', meaning: 'dog' },
+                { char: '猫', pinyin: 'māo', meaning: 'cat' },
+                { char: '鸟', pinyin: 'niǎo', meaning: 'bird' },
+                { char: '鱼', pinyin: 'yú', meaning: 'fish' },
+                { char: '马', pinyin: 'mǎ', meaning: 'horse' },
+                { char: '牛', pinyin: 'niú', meaning: 'cow' },
+                { char: '羊', pinyin: 'yáng', meaning: 'sheep' },
+                { char: '猪', pinyin: 'zhū', meaning: 'pig' },
+                { char: '兔子', pinyin: 'tùzi', meaning: 'rabbit' },
+                { char: '老虎', pinyin: 'lǎohǔ', meaning: 'tiger' },
+                { char: '狮子', pinyin: 'shīzi', meaning: 'lion' },
+                { char: '熊猫', pinyin: 'xióngmāo', meaning: 'panda' }
+            ],
+            plants: [
+                { char: '花', pinyin: 'huā', meaning: 'flower' },
+                { char: '树', pinyin: 'shù', meaning: 'tree' },
+                { char: '草', pinyin: 'cǎo', meaning: 'grass' },
+                { char: '玫瑰', pinyin: 'méiguī', meaning: 'rose' },
+                { char: '竹子', pinyin: 'zhúzi', meaning: 'bamboo' },
+                { char: '松树', pinyin: 'sōngshù', meaning: 'pine tree' },
+                { char: '柳树', pinyin: 'liǔshù', meaning: 'willow tree' },
+                { char: '荷花', pinyin: 'héhuā', meaning: 'lotus' },
+                { char: '菊花', pinyin: 'júhuā', meaning: 'chrysanthemum' },
+                { char: '梅花', pinyin: 'méihuā', meaning: 'plum blossom' },
+                { char: '兰花', pinyin: 'lánhuā', meaning: 'orchid' },
+                { char: '桃花', pinyin: 'táohuā', meaning: 'peach blossom' }
+            ],
+            countries: [
+                { char: '中国', pinyin: 'Zhōngguó', meaning: 'China' },
+                { char: '美国', pinyin: 'Měiguó', meaning: 'United States' },
+                { char: '英国', pinyin: 'Yīngguó', meaning: 'United Kingdom' },
+                { char: '法国', pinyin: 'Fǎguó', meaning: 'France' },
+                { char: '德国', pinyin: 'Déguó', meaning: 'Germany' },
+                { char: '日本', pinyin: 'Rìběn', meaning: 'Japan' },
+                { char: '韩国', pinyin: 'Hánguó', meaning: 'South Korea' },
+                { char: '加拿大', pinyin: 'Jiānádà', meaning: 'Canada' },
+                { char: '澳大利亚', pinyin: 'Àodàlìyà', meaning: 'Australia' },
+                { char: '意大利', pinyin: 'Yìdàlì', meaning: 'Italy' },
+                { char: '西班牙', pinyin: 'Xībānyá', meaning: 'Spain' },
+                { char: '俄罗斯', pinyin: 'Éluósī', meaning: 'Russia' }
+            ],
+            cities: [
+                { char: '北京', pinyin: 'Běijīng', meaning: 'Beijing' },
+                { char: '上海', pinyin: 'Shànghǎi', meaning: 'Shanghai' },
+                { char: '纽约', pinyin: 'Niǔyuē', meaning: 'New York' },
+                { char: '伦敦', pinyin: 'Lúndūn', meaning: 'London' },
+                { char: '巴黎', pinyin: 'Bālí', meaning: 'Paris' },
+                { char: '东京', pinyin: 'Dōngjīng', meaning: 'Tokyo' },
+                { char: '香港', pinyin: 'Xiānggǎng', meaning: 'Hong Kong' },
+                { char: '台北', pinyin: 'Táiběi', meaning: 'Taipei' },
+                { char: '悉尼', pinyin: 'Xīní', meaning: 'Sydney' },
+                { char: '洛杉矶', pinyin: 'Luòshānjī', meaning: 'Los Angeles' },
+                { char: '莫斯科', pinyin: 'Mòsīkē', meaning: 'Moscow' },
+                { char: '柏林', pinyin: 'Bólín', meaning: 'Berlin' }
+            ],
+            sentences: [
+                { char: '我喜欢狗。', pinyin: 'Wǒ xǐhuan gǒu.', meaning: 'I like dogs.' },
+                { char: '熊猫很可爱。', pinyin: 'Xióngmāo hěn kě\'ài.', meaning: 'Pandas are very cute.' },
+                { char: '这是一只猫。', pinyin: 'Zhè shì yī zhī māo.', meaning: 'This is a cat.' },
+                { char: '花园里有很多花。', pinyin: 'Huāyuán lǐ yǒu hěnduō huā.', meaning: 'There are many flowers in the garden.' },
+                { char: '竹子是熊猫的食物。', pinyin: 'Zhúzi shì xióngmāo de shíwù.', meaning: 'Bamboo is panda food.' },
+                { char: '这棵树很高。', pinyin: 'Zhè kē shù hěn gāo.', meaning: 'This tree is very tall.' },
+                { char: '我来自中国。', pinyin: 'Wǒ láizì Zhōngguó.', meaning: 'I am from China.' },
+                { char: '我想去美国。', pinyin: 'Wǒ xiǎng qù Měiguó.', meaning: 'I want to go to the United States.' },
+                { char: '日本在哪里？', pinyin: 'Rìběn zài nǎlǐ?', meaning: 'Where is Japan?' },
+                { char: '北京是中国的首都。', pinyin: 'Běijīng shì Zhōngguó de shǒudū.', meaning: 'Beijing is the capital of China.' },
+                { char: '我住在上海。', pinyin: 'Wǒ zhù zài Shànghǎi.', meaning: 'I live in Shanghai.' },
+                { char: '巴黎是一个美丽的城市。', pinyin: 'Bālí shì yī gè měilì de chéngshì.', meaning: 'Paris is a beautiful city.' },
+                { char: '鸟在树上唱歌。', pinyin: 'Niǎo zài shù shàng chànggē.', meaning: 'The bird is singing in the tree.' },
+                { char: '这朵玫瑰很香。', pinyin: 'Zhè duǒ méiguī hěn xiāng.', meaning: 'This rose smells good.' },
+                { char: '伦敦在英国。', pinyin: 'Lúndūn zài Yīngguó.', meaning: 'London is in the United Kingdom.' }
+            ]
+        };
+
+        let voices = [];
+        let selectedVoice = null;
+
+        function loadVoices() {
+            voices = speechSynthesis.getVoices();
+            const voiceSelector = document.getElementById('voice-selector');
+            voiceSelector.innerHTML = '<option value="">Default Voice</option>';
+            
+            const chineseVoices = voices.filter(voice => 
+                voice.lang.startsWith('zh') || voice.lang.includes('Chinese')
+            );
+            
+            chineseVoices.forEach(voice => {
+                const option = new Option(`${voice.name} (${voice.lang})`, voice.name);
+                voiceSelector.appendChild(option);
+                
+                if (voice.name.toLowerCase().includes('hanhan') || voice.name.toLowerCase().includes('yaoyao')) {
+                    selectedVoice = voice;
+                    option.selected = true;
+                }
+            });
+        }
+
+        if (speechSynthesis.onvoiceschanged !== undefined) {
+            speechSynthesis.onvoiceschanged = loadVoices;
+        }
+
+        function createCard(charData, index, isSentence = false) {
+            const cardClass = isSentence ? 'card sentence-card' : 'card';
+            const canvasHeight = isSentence ? 'height="250"' : 'height="200"';
+            
+            return `
+                <li class="cards_item">
+                    <div class="${cardClass}">
+                        <div class="sketch">
+                            <canvas class="paint" width="300" ${canvasHeight} data-index="${index}"></canvas>
+                            <button class="erase-button" data-canvas-index="${index}">Erase</button>
+                        </div>
+                        <div class="card_content">
+                            <div class="chinese-char" data-pinyin="${charData.pinyin}" data-char="${charData.char}">${charData.char}</div>
+                            <div class="char-info">${charData.pinyin}<br/>${charData.meaning}</div>
+                        </div>
+                    </div>
+                </li>
+            `;
+        }
+
+        function generateCards() {
+            const animalsGrid = document.getElementById('animals-grid');
+            const plantsGrid = document.getElementById('plants-grid');
+            const countriesGrid = document.getElementById('countries-grid');
+            const citiesGrid = document.getElementById('cities-grid');
+            const sentencesGrid = document.getElementById('sentences-grid');
+            
+            let index = 0;
+            animalsGrid.innerHTML = characters.animals.map(char => createCard(char, index++)).join('');
+            plantsGrid.innerHTML = characters.plants.map(char => createCard(char, index++)).join('');
+            countriesGrid.innerHTML = characters.countries.map(char => createCard(char, index++)).join('');
+            citiesGrid.innerHTML = characters.cities.map(char => createCard(char, index++)).join('');
+            sentencesGrid.innerHTML = characters.sentences.map(char => createCard(char, index++, true)).join('');
+            
+            addAudioEventListeners();
+            addCanvasEventListeners();
+            addEraseButtonListeners();
+        }
+
+        function speakChinese(char, pinyin) {
+            if (speechSynthesis.speaking) {
+                speechSynthesis.cancel();
+            }
+            
+            if ('speechSynthesis' in window) {
+                const utterance = new SpeechSynthesisUtterance(char);
+                utterance.lang = 'zh-CN';
+                utterance.rate = 0.8;
+                
+                if (selectedVoice) {
+                    utterance.voice = selectedVoice;
+                }
+                
+                utterance.onend = function() {
+                    document.getElementById('tts-button').disabled = false;
+                };
+                
+                speechSynthesis.speak(utterance);
+            } else {
+                console.warn('Text-to-speech not supported in this browser.');
+            }
+        }
+
+        function addAudioEventListeners() {
+            document.querySelectorAll('.chinese-char').forEach(charElement => {
+                charElement.addEventListener('click', function() {
+                    const char = this.getAttribute('data-char');
+                    const pinyin = this.getAttribute('data-pinyin');
+                    speakChinese(char, pinyin);
+                });
+            });
+        }
+
+        function playAllCharacters() {
+            const ttsButton = document.getElementById('tts-button');
+            ttsButton.disabled = true;
+            
+            const allChars = [...characters.animals, ...characters.plants, ...characters.countries, ...characters.cities, ...characters.sentences];
+            let index = 0;
+            
+            function speakNext() {
+                if (index < allChars.length) {
+                    const charData = allChars[index];
+                    speakChinese(charData.char, charData.pinyin);
+                    
+                    const charElements = document.querySelectorAll('.chinese-char');
+                    charElements.forEach(el => el.style.backgroundColor = '');
+                    
+                    const currentCharElement = Array.from(charElements).find(
+                        el => el.getAttribute('data-char') === charData.char
+                    );
+                    
+                    if (currentCharElement) {
+                        currentCharElement.style.backgroundColor = '#e8f5e9';
+                    }
+                    
+                    const utterance = new SpeechSynthesisUtterance(charData.char);
+                    utterance.lang = 'zh-CN';
+                    utterance.rate = 0.8;
+                    if (selectedVoice) utterance.voice = selectedVoice;
+                    
+                    utterance.onend = function() {
+                        index++;
+                        setTimeout(speakNext, 500);
+                    };
+                    
+                    speechSynthesis.speak(utterance);
+                } else {
+                    ttsButton.disabled = false;
+                    document.querySelectorAll('.chinese-char').forEach(el => {
+                        el.style.backgroundColor = '';
+                    });
+                }
+            }
+            
+            speakNext();
+        }
+
+        let isDrawing = false;
+        let canvasesContexts = [];
+        let lastX = 0;
+        let lastY = 0;
+
+        function initializeCanvasContexts() {
+            const canvasElements = document.querySelectorAll('.paint');
+            canvasElements.forEach((canvas, index) => {
+                const ctx = canvas.getContext('2d');
+                canvasesContexts[index] = ctx;
+                
+                const rect = canvas.getBoundingClientRect();
+                canvas.width = rect.width;
+                canvas.height = rect.height;
+                
+                ctx.strokeStyle = '#333';
+                ctx.lineWidth = 3;
+                ctx.lineCap = 'round';
+                ctx.lineJoin = 'round';
+            });
+        }
+
+        function addCanvasEventListeners() {
+            document.querySelectorAll('.paint').forEach(canvas => {
+                canvas.addEventListener('mousedown', startDrawing);
+                canvas.addEventListener('mousemove', draw);
+                canvas.addEventListener('mouseup', stopDrawing);
+                canvas.addEventListener('mouseout', stopDrawing);
+                canvas.addEventListener('touchstart', handleTouch);
+                canvas.addEventListener('touchmove', handleTouch);
+                canvas.addEventListener('touchend', stopDrawing);
+                canvas.addEventListener('touchcancel', stopDrawing);
+            });
+        }
+
+        function getCanvasCoordinates(canvas, clientX, clientY) {
+            const rect = canvas.getBoundingClientRect();
+            const scaleX = canvas.width / rect.width;
+            const scaleY = canvas.height / rect.height;
+            
+            return {
+                x: (clientX - rect.left) * scaleX,
+                y: (clientY - rect.top) * scaleY
+            };
+        }
+
+        function startDrawing(e) {
+            isDrawing = true;
+            const canvas = e.target;
+            const clientX = e.clientX || (e.touches && e.touches[0].clientX);
+            const clientY = e.clientY || (e.touches && e.touches[0].clientY);
+            
+            if (clientX && clientY) {
+                const coords = getCanvasCoordinates(canvas, clientX, clientY);
+                lastX = coords.x;
+                lastY = coords.y;
+                
+                const ctx = canvasesContexts[parseInt(canvas.dataset.index)];
+                ctx.beginPath();
+                ctx.moveTo(lastX, lastY);
+            }
+        }
+
+        function draw(e) {
+            if (!isDrawing) return;
+            e.preventDefault();
+            
+            const canvas = e.target;
+            const clientX = e.clientX || (e.touches && e.touches[0].clientX);
+            const clientY = e.clientY || (e.touches && e.touches[0].clientY);
+            
+            if (clientX && clientY) {
+                const coords = getCanvasCoordinates(canvas, clientX, clientY);
+                const currentX = coords.x;
+                const currentY = coords.y;
+                
+                const ctx = canvasesContexts[parseInt(canvas.dataset.index)];
+                ctx.lineTo(currentX, currentY);
+                ctx.stroke();
+                
+                lastX = currentX;
+                lastY = currentY;
+            }
+        }
+
+        function stopDrawing() {
+            isDrawing = false;
+        }
+
+        function handleTouch(e) {
+            e.preventDefault();
+            const touch = e.touches[0];
+            const target = e.target;
+            
+            if (e.type === 'touchstart') {
+                const mouseDownEvent = new MouseEvent('mousedown', {
+                    clientX: touch.clientX,
+                    clientY: touch.clientY,
+                    bubbles: true,
+                    cancelable: true
+                });
+                target.dispatchEvent(mouseDownEvent);
+            } else if (e.type === 'touchmove') {
+                const mouseMoveEvent = new MouseEvent('mousemove', {
+                    clientX: touch.clientX,
+                    clientY: touch.clientY,
+                    bubbles: true,
+                    cancelable: true
+                });
+                target.dispatchEvent(mouseMoveEvent);
+            }
+        }
+
+        function clearCanvas(index) {
+            const canvas = document.querySelector(`canvas[data-index="${index}"]`);
+            if (canvas) {
+                const ctx = canvasesContexts[index];
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+            }
+        }
+
+        function addEraseButtonListeners() {
+            document.querySelectorAll('.erase-button').forEach(button => {
+                button.addEventListener('click', function() {
+                    const canvasIndex = parseInt(this.dataset.canvasIndex);
+                    clearCanvas(canvasIndex);
+                });
+            });
+        }
+
+        document.querySelectorAll('#navbar a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    const navbarHeight = 80;
+                    const offsetTop = targetElement.offsetTop - navbarHeight;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                    document.querySelectorAll('#navbar a').forEach(a => a.classList.remove('active'));
+                    this.classList.add('active');
+                }
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            generateCards();
+            initializeCanvasContexts();
+            loadVoices();
+            
+            document.getElementById('tts-button').addEventListener('click', playAllCharacters);
+            
+            document.getElementById('voice-selector').addEventListener('change', function() {
+                const voiceName = this.value;
+                if (voiceName) {
+                    selectedVoice = voices.find(voice => voice.name === voiceName);
+                } else {
+                    selectedVoice = null;
+                }
+            });
+        });
+
+        window.addEventListener('resize', function() {
+            setTimeout(initializeCanvasContexts, 100);
+        });
+    </script>
+</body>
+</html>
