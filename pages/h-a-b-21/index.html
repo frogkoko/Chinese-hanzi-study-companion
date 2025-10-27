@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chinese A/B Conversations</title>
+    <title>Chinese A/B Conversations - Food & Drink</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -182,10 +182,11 @@
             opacity: 0.9;
         }
         .vocab-highlight {
-            background-color: #060745;
+            background-color: #ffeb3b;
             padding: 2px 4px;
             border-radius: 4px;
             font-weight: bold;
+            color: #333;
         }
         
         /* Test Section Styles */
@@ -292,11 +293,11 @@
 <body>
     <div class="container">
         <header>
-            <a href="../index.html" class="back-btn">
+            <a href="../../index.html" class="back-btn">
                 <i class="fas fa-arrow-left"></i>
             </a>
-            <h1>Chinese A/B Conversations</h1>
-            <p class="subtitle">Practice common Chinese phrases with Text-to-Speech</p>
+            <h1>Chinese A/B Conversations - Food & Drink</h1>
+            <p class="subtitle">Practice food and drink conversations with Text-to-Speech</p>
         </header>
         
         <div class="voice-info">
@@ -339,545 +340,429 @@
             <p><strong>Next/Previous:</strong> Navigate through the conversation.</p>
             <p><strong>Take Test:</strong> Test your understanding of the current conversation.</p>
             <p><strong>Reset:</strong> Start the conversation from the beginning.</p>
-            <p><strong>Vocabulary:</strong> Key words are highlighted in yellow for easier learning.</p>
+            <p><strong>Vocabulary:</strong> Key food and drink words are highlighted in yellow for easier learning.</p>
         </div>
     </div>
     <script>
         const conversations = [
+            // Food and Drink Conversations
             [
-                { speaker: 'a', text: "你好，最近怎么样？" },
-                { speaker: 'b', text: "我很好，谢谢。你呢？" },
-                { speaker: 'a', text: "我也挺好的。" }
+                { speaker: 'a', text: "你想吃什么？" },
+                { speaker: 'b', text: "我想吃米饭和鸡肉。" },
+                { speaker: 'a', text: "好的，我也想吃米饭。" }
             ],
             [
-                { speaker: 'a', text: "你叫什么名字？" },
-                { speaker: 'b', text: "我叫王丽。你呢？" },
-                { speaker: 'a', text: "我叫张明。" }
+                { speaker: 'a', text: "你想喝什么？" },
+                { speaker: 'b', text: "我想喝茶。" },
+                { speaker: 'a', text: "我喜欢喝咖啡。" }
             ],
             [
-                { speaker: 'a', text: "你多大了？" },
-                { speaker: 'b', text: "我二十五岁。你呢？" },
-                { speaker: 'a', text: "我三十岁。" }
+                { speaker: 'a', text: "我可以要一杯水吗？" },
+                { speaker: 'b', text: "当然可以。给你。" },
+                { speaker: 'a', text: "谢谢！" }
             ],
             [
-                { speaker: 'a', text: "你今天做了什么？" },
-                { speaker: 'b', text: "我工作了，还学了中文。你呢？" },
-                { speaker: 'a', text: "我去了健身房，还做了饭。" }
+                { speaker: 'a', text: "你喜欢吃什么水果？" },
+                { speaker: 'b', text: "我喜欢吃苹果和香蕉。" },
+                { speaker: 'a', text: "我也喜欢吃水果。" }
             ],
             [
-                { speaker: 'a', text: "你喜欢吃什么菜？" },
-                { speaker: 'b', text: "我喜欢吃川菜。你呢？" },
-                { speaker: 'a', text: "我喜欢吃粤菜。" }
+                { speaker: 'a', text: "给我一碗面条。" },
+                { speaker: 'b', text: "好的，马上来。" },
+                { speaker: 'a', text: "谢谢！" }
             ],
             [
-                { speaker: 'a', text: "你周末有什么计划？" },
-                { speaker: 'b', text: "我打算去看电影。你呢？" },
-                { speaker: 'a', text: "我可能会和朋友一起吃饭。" }
-            ],
-            // New conversations with key vocabulary
-            [
-                { speaker: 'a', text: "你好，我是李明。你叫什么名字？" },
-                { speaker: 'b', text: "你好，我叫王芳。很高兴认识你。" },
-                { speaker: 'a', text: "我也很高兴认识你。再见！" },
-                { speaker: 'b', text: "再见！" }
+                { speaker: 'a', text: "我买三个包子。" },
+                { speaker: 'b', text: "好的，一共十元。" },
+                { speaker: 'a', text: "给你钱。" }
             ],
             [
-                { speaker: 'a', text: "他是我的老师。她也是我的老师。" },
-                { speaker: 'b', text: "他们都会说中文吗？" },
-                { speaker: 'a', text: "是的，他们都会说中文。" }
+                { speaker: 'a', text: "你想吃饺子吗？" },
+                { speaker: 'b', text: "是的，我喜欢吃饺子。" },
+                { speaker: 'a', text: "我也喜欢吃饺子。" }
             ],
             [
-                { speaker: 'a', text: "我们都学习中文。你们也学习中文吗？" },
-                { speaker: 'b', text: "不，我们不学习中文。我们学习英文。" },
-                { speaker: 'a', text: "你们所有人都不学习中文吗？" },
-                { speaker: 'b', text: "是的，我们所有人都不学习中文。" }
+                { speaker: 'a', text: "你喜欢喝果汁吗？" },
+                { speaker: 'b', text: "是的，我喜欢喝果汁。" },
+                { speaker: 'a', text: "我喜欢喝牛奶和果汁。" }
             ],
             [
-                { speaker: 'a', text: "你会写中文吗？" },
-                { speaker: 'b', text: "是的，我会写一些汉字。" },
-                { speaker: 'a', text: "你会说中文吗？" },
-                { speaker: 'b', text: "是的，我会说一点中文。" }
+                { speaker: 'a', text: "我可以买牛肉和蔬菜吗？" },
+                { speaker: 'b', text: "当然可以。" },
+                { speaker: 'a', text: "太好了，谢谢！" }
             ],
             [
-                { speaker: 'a', text: "你有问题吗？" },
-                { speaker: 'b', text: "是的，我有一个问题。这个字怎么写？" },
-                { speaker: 'a', text: "这个字是这样写的。" },
-                { speaker: 'b', text: "谢谢！" }
+                { speaker: 'a', text: "你想喝啤酒还是红酒？" },
+                { speaker: 'b', text: "我想喝啤酒。" },
+                { speaker: 'a', text: "好的，我也喝啤酒。" }
             ],
             [
-                { speaker: 'a', text: "你们都喜欢学习中文吗？" },
-                { speaker: 'b', text: "我们都喜欢学习中文。它很有趣。" },
-                { speaker: 'a', text: "是的，我也觉得中文很有趣。" }
+                { speaker: 'a', text: "你吃鱼吗？" },
+                { speaker: 'b', text: "是的，我吃鱼。" },
+                { speaker: 'a', text: "我喜欢吃鱼和蔬菜。" }
             ],
             [
-                { speaker: 'a', text: "他不在这里。她也不在这里。" },
-                { speaker: 'b', text: "他们都不在这里吗？" },
-                { speaker: 'a', text: "是的，他们所有人都不在这里。" }
+                { speaker: 'a', text: "你想吃面包吗？" },
+                { speaker: 'b', text: "不，我不喜欢吃面包。" },
+                { speaker: 'a', text: "我喜欢吃面包。" }
             ],
             [
-                { speaker: 'a', text: "你会说中文，也会写中文吗？" },
-                { speaker: 'b', text: "是的，我既会说中文也会写中文。" },
-                { speaker: 'a', text: "太好了！我也在学习中文。" }
+                { speaker: 'a', text: "我可以要一杯茶吗？" },
+                { speaker: 'b', text: "当然可以。给你茶。" },
+                { speaker: 'a', text: "谢谢！" }
+            ],
+            [
+                { speaker: 'a', text: "你喜欢吃什么？" },
+                { speaker: 'b', text: "我喜欢吃猪肉和米饭。" },
+                { speaker: 'a', text: "我也喜欢吃猪肉。" }
+            ],
+            [
+                { speaker: 'a', text: "你想喝什么饮料？" },
+                { speaker: 'b', text: "我想喝果汁。" },
+                { speaker: 'a', text: "我想喝咖啡。" }
             ]
         ];
 
         // Test questions for each conversation
         const testQuestions = [
+            // Tests for food and drink conversations
             [
                 {
-                    question: "What is Speaker A asking about?",
+                    question: "What does Speaker B want to eat?",
                     options: [
-                        "How the other person is doing",
-                        "What the other person's name is",
-                        "Where the other person is from",
-                        "What the other person is doing"
+                        "Rice and chicken",
+                        "Noodles and beef",
+                        "Dumplings and vegetables",
+                        "Bread and fruit"
                     ],
                     correctAnswer: 0
                 },
                 {
-                    question: "How is Speaker B feeling?",
+                    question: "What does Speaker A want to eat?",
                     options: [
-                        "Not good",
-                        "Fine",
-                        "Tired",
-                        "Busy"
-                    ],
-                    correctAnswer: 1
-                },
-                {
-                    question: "How is Speaker A feeling?",
-                    options: [
-                        "Also fine",
-                        "Not good",
-                        "Tired",
-                        "Busy"
+                        "Rice",
+                        "Noodles",
+                        "Dumplings",
+                        "Bread"
                     ],
                     correctAnswer: 0
                 }
             ],
             [
                 {
-                    question: "What is Speaker A asking?",
+                    question: "What does Speaker B want to drink?",
                     options: [
-                        "How old the other person is",
-                        "What the other person's name is",
-                        "Where the other person is from",
-                        "What the other person does"
+                        "Tea",
+                        "Coffee",
+                        "Water",
+                        "Juice"
                     ],
-                    correctAnswer: 1
+                    correctAnswer: 0
                 },
                 {
-                    question: "What is Speaker B's name?",
+                    question: "What does Speaker A like to drink?",
                     options: [
-                        "张明",
-                        "王丽",
-                        "李明",
-                        "王芳"
-                    ],
-                    correctAnswer: 1
-                },
-                {
-                    question: "What is Speaker A's name?",
-                    options: [
-                        "张明",
-                        "王丽",
-                        "李明",
-                        "王芳"
+                        "Coffee",
+                        "Tea",
+                        "Water",
+                        "Juice"
                     ],
                     correctAnswer: 0
                 }
             ],
             [
                 {
-                    question: "What is Speaker A asking about?",
+                    question: "What does Speaker A ask for?",
                     options: [
-                        "The other person's job",
-                        "The other person's age",
-                        "The other person's hobbies",
-                        "The other person's family"
-                    ],
-                    correctAnswer: 1
-                },
-                {
-                    question: "How old is Speaker B?",
-                    options: [
-                        "20 years old",
-                        "25 years old",
-                        "30 years old",
-                        "35 years old"
-                    ],
-                    correctAnswer: 1
-                },
-                {
-                    question: "How old is Speaker A?",
-                    options: [
-                        "20 years old",
-                        "25 years old",
-                        "30 years old",
-                        "35 years old"
-                    ],
-                    correctAnswer: 2
-                }
-            ],
-            [
-                {
-                    question: "What did Speaker B do today?",
-                    options: [
-                        "Went to the gym and cooked",
-                        "Worked and studied Chinese",
-                        "Watched a movie and ate out",
-                        "Met friends and had dinner"
-                    ],
-                    correctAnswer: 1
-                },
-                {
-                    question: "What did Speaker A do today?",
-                    options: [
-                        "Went to the gym and cooked",
-                        "Worked and studied Chinese",
-                        "Watched a movie and ate out",
-                        "Met friends and had dinner"
+                        "A glass of water",
+                        "A cup of tea",
+                        "A bottle of beer",
+                        "A glass of juice"
                     ],
                     correctAnswer: 0
                 },
                 {
-                    question: "What language did Speaker B study?",
+                    question: "How does Speaker B respond?",
                     options: [
-                        "English",
-                        "Japanese",
-                        "Chinese",
-                        "Korean"
-                    ],
-                    correctAnswer: 2
-                }
-            ],
-            [
-                {
-                    question: "What cuisine does Speaker B like?",
-                    options: [
-                        "Cantonese cuisine",
-                        "Sichuan cuisine",
-                        "Shanghai cuisine",
-                        "Beijing cuisine"
-                    ],
-                    correctAnswer: 1
-                },
-                {
-                    question: "What cuisine does Speaker A like?",
-                    options: [
-                        "Cantonese cuisine",
-                        "Sichuan cuisine",
-                        "Shanghai cuisine",
-                        "Beijing cuisine"
-                    ],
-                    correctAnswer: 0
-                },
-                {
-                    question: "What are they talking about?",
-                    options: [
-                        "Their favorite movies",
-                        "Their favorite foods",
-                        "Their favorite sports",
-                        "Their favorite places"
-                    ],
-                    correctAnswer: 1
-                }
-            ],
-            [
-                {
-                    question: "What are Speaker B's weekend plans?",
-                    options: [
-                        "Go to the gym",
-                        "Watch a movie",
-                        "Have dinner with friends",
-                        "Study Chinese"
-                    ],
-                    correctAnswer: 1
-                },
-                {
-                    question: "What are Speaker A's weekend plans?",
-                    options: [
-                        "Go to the gym",
-                        "Watch a movie",
-                        "Have dinner with friends",
-                        "Study Chinese"
-                    ],
-                    correctAnswer: 2
-                },
-                {
-                    question: "Who is Speaker A planning to meet?",
-                    options: [
-                        "Family",
-                        "Colleagues",
-                        "Friends",
-                        "Teachers"
-                    ],
-                    correctAnswer: 2
-                }
-            ],
-            // Tests for additional conversations
-            [
-                {
-                    question: "What is Speaker A's name?",
-                    options: [
-                        "王芳",
-                        "李明",
-                        "张明",
-                        "王丽"
-                    ],
-                    correctAnswer: 1
-                },
-                {
-                    question: "What is Speaker B's name?",
-                    options: [
-                        "王芳",
-                        "李明",
-                        "张明",
-                        "王丽"
-                    ],
-                    correctAnswer: 0
-                },
-                {
-                    question: "How do they feel about meeting each other?",
-                    options: [
-                        "They are happy to meet",
-                        "They are indifferent",
-                        "They are unhappy to meet",
-                        "They are nervous to meet"
+                        "Of course, here you are",
+                        "No, we don't have water",
+                        "Wait a moment",
+                        "That will cost money"
                     ],
                     correctAnswer: 0
                 }
             ],
             [
                 {
-                    question: "Who are the teachers?",
+                    question: "What fruits does Speaker B like?",
                     options: [
-                        "A man and a woman",
-                        "Two men",
-                        "Two women",
-                        "A man and a child"
+                        "Apples and bananas",
+                        "Oranges and grapes",
+                        "Apples and oranges",
+                        "Bananas and grapes"
                     ],
                     correctAnswer: 0
                 },
                 {
-                    question: "What language do the teachers speak?",
+                    question: "What does Speaker A say about fruit?",
                     options: [
-                        "English",
-                        "Japanese",
-                        "Chinese",
-                        "Korean"
+                        "They also like to eat fruit",
+                        "They don't like fruit",
+                        "They prefer vegetables",
+                        "They only eat apples"
                     ],
-                    correctAnswer: 2
+                    correctAnswer: 0
+                }
+            ],
+            [
+                {
+                    question: "What does Speaker A ask for?",
+                    options: [
+                        "A bowl of noodles",
+                        "A plate of dumplings",
+                        "A glass of water",
+                        "A cup of tea"
+                    ],
+                    correctAnswer: 0
                 },
                 {
-                    question: "Do all of them speak Chinese?",
+                    question: "How does Speaker B respond?",
+                    options: [
+                        "Okay, coming right away",
+                        "We don't have noodles",
+                        "That will be 10 yuan",
+                        "Wait a moment please"
+                    ],
+                    correctAnswer: 0
+                }
+            ],
+            [
+                {
+                    question: "What does Speaker A want to buy?",
+                    options: [
+                        "Three steamed buns",
+                        "Three apples",
+                        "Three bottles of water",
+                        "Three bowls of noodles"
+                    ],
+                    correctAnswer: 0
+                },
+                {
+                    question: "How much does it cost?",
+                    options: [
+                        "10 yuan",
+                        "5 yuan",
+                        "15 yuan",
+                        "20 yuan"
+                    ],
+                    correctAnswer: 0
+                }
+            ],
+            [
+                {
+                    question: "What food are they talking about?",
+                    options: [
+                        "Dumplings",
+                        "Noodles",
+                        "Rice",
+                        "Bread"
+                    ],
+                    correctAnswer: 0
+                },
+                {
+                    question: "Do both speakers like this food?",
                     options: [
                         "Yes",
                         "No",
-                        "Only one of them",
-                        "It's not mentioned"
+                        "Only Speaker A",
+                        "Only Speaker B"
                     ],
                     correctAnswer: 0
                 }
             ],
             [
                 {
-                    question: "What language does Speaker A study?",
+                    question: "What does Speaker B like to drink?",
                     options: [
-                        "English",
-                        "Chinese",
-                        "Japanese",
-                        "Korean"
-                    ],
-                    correctAnswer: 1
-                },
-                {
-                    question: "What language does Speaker B study?",
-                    options: [
-                        "English",
-                        "Chinese",
-                        "Japanese",
-                        "Korean"
+                        "Juice",
+                        "Milk",
+                        "Coffee",
+                        "Tea"
                     ],
                     correctAnswer: 0
                 },
                 {
-                    question: "Do all of Speaker B's group study Chinese?",
+                    question: "What does Speaker A like to drink?",
                     options: [
-                        "Yes",
+                        "Milk and juice",
+                        "Coffee and tea",
+                        "Water and juice",
+                        "Beer and wine"
+                    ],
+                    correctAnswer: 0
+                }
+            ],
+            [
+                {
+                    question: "What does Speaker A want to buy?",
+                    options: [
+                        "Beef and vegetables",
+                        "Chicken and rice",
+                        "Pork and noodles",
+                        "Fish and fruit"
+                    ],
+                    correctAnswer: 0
+                },
+                {
+                    question: "How does Speaker B respond?",
+                    options: [
+                        "Of course",
+                        "No, we don't have that",
+                        "That's too expensive",
+                        "Come back later"
+                    ],
+                    correctAnswer: 0
+                }
+            ],
+            [
+                {
+                    question: "What drinks are mentioned?",
+                    options: [
+                        "Beer and red wine",
+                        "Beer and juice",
+                        "Red wine and coffee",
+                        "Coffee and tea"
+                    ],
+                    correctAnswer: 0
+                },
+                {
+                    question: "What does Speaker B choose?",
+                    options: [
+                        "Beer",
+                        "Red wine",
+                        "Juice",
+                        "Water"
+                    ],
+                    correctAnswer: 0
+                }
+            ],
+            [
+                {
+                    question: "What food are they discussing?",
+                    options: [
+                        "Fish",
+                        "Chicken",
+                        "Beef",
+                        "Pork"
+                    ],
+                    correctAnswer: 0
+                },
+                {
+                    question: "What does Speaker A like to eat?",
+                    options: [
+                        "Fish and vegetables",
+                        "Fish and rice",
+                        "Fish and noodles",
+                        "Fish and fruit"
+                    ],
+                    correctAnswer: 0
+                }
+            ],
+            [
+                {
+                    question: "Does Speaker B like bread?",
+                    options: [
                         "No",
-                        "Only some of them",
-                        "It's not mentioned"
-                    ],
-                    correctAnswer: 1
-                }
-            ],
-            [
-                {
-                    question: "What can Speaker B do with Chinese?",
-                    options: [
-                        "Speak and write",
-                        "Only speak",
-                        "Only write",
-                        "Neither speak nor write"
-                    ],
-                    correctAnswer: 0
-                },
-                {
-                    question: "How well can Speaker B write Chinese?",
-                    options: [
-                        "Very well",
-                        "Not at all",
-                        "Some characters",
-                        "Only pinyin"
-                    ],
-                    correctAnswer: 2
-                },
-                {
-                    question: "How well can Speaker B speak Chinese?",
-                    options: [
-                        "Very well",
-                        "Not at all",
-                        "A little",
-                        "Only a few words"
-                    ],
-                    correctAnswer: 2
-                }
-            ],
-            [
-                {
-                    question: "What does Speaker B have?",
-                    options: [
-                        "A book",
-                        "A pen",
-                        "A question",
-                        "A friend"
-                    ],
-                    correctAnswer: 2
-                },
-                {
-                    question: "What is Speaker B's question about?",
-                    options: [
-                        "How to speak a word",
-                        "How to write a character",
-                        "How to read a sentence",
-                        "How to pronounce a word"
-                    ],
-                    correctAnswer: 1
-                },
-                {
-                    question: "How does Speaker A respond to the question?",
-                    options: [
-                        "They don't know",
-                        "They show how to write it",
-                        "They give a book",
-                        "They ask someone else"
-                    ],
-                    correctAnswer: 1
-                }
-            ],
-            [
-                {
-                    question: "How do Speaker B's group feel about learning Chinese?",
-                    options: [
-                        "They all like it",
-                        "They all dislike it",
-                        "Some like it, some don't",
+                        "Yes",
+                        "Only sometimes",
                         "It's not mentioned"
                     ],
                     correctAnswer: 0
                 },
                 {
-                    question: "What does Speaker B think about Chinese?",
+                    question: "What does Speaker A say about bread?",
                     options: [
-                        "It's difficult",
-                        "It's interesting",
-                        "It's boring",
-                        "It's easy"
-                    ],
-                    correctAnswer: 1
-                },
-                {
-                    question: "Does Speaker A agree with Speaker B?",
-                    options: [
-                        "Yes",
-                        "No",
-                        "Partially",
-                        "It's not clear"
+                        "They like bread",
+                        "They don't like bread",
+                        "They prefer rice",
+                        "They never eat bread"
                     ],
                     correctAnswer: 0
                 }
             ],
             [
                 {
-                    question: "Where are the people Speaker A is talking about?",
+                    question: "What does Speaker A ask for?",
                     options: [
-                        "Here",
-                        "Not here",
-                        "At school",
-                        "At home"
+                        "A cup of tea",
+                        "A glass of water",
+                        "A bottle of beer",
+                        "A glass of juice"
                     ],
-                    correctAnswer: 1
+                    correctAnswer: 0
                 },
                 {
-                    question: "Who is not here?",
+                    question: "What does Speaker B give them?",
                     options: [
-                        "Only the man",
-                        "Only the woman",
-                        "Both the man and woman",
-                        "Only the children"
+                        "Tea",
+                        "Water",
+                        "Coffee",
+                        "Juice"
                     ],
-                    correctAnswer: 2
-                },
-                {
-                    question: "Are any of them here?",
-                    options: [
-                        "Yes",
-                        "No",
-                        "Only one",
-                        "It's not mentioned"
-                    ],
-                    correctAnswer: 1
+                    correctAnswer: 0
                 }
             ],
             [
                 {
-                    question: "What can Speaker B do with Chinese?",
+                    question: "What does Speaker B like to eat?",
                     options: [
-                        "Speak and write",
-                        "Only speak",
-                        "Only write",
-                        "Neither speak nor write"
+                        "Pork and rice",
+                        "Chicken and noodles",
+                        "Beef and vegetables",
+                        "Fish and fruit"
                     ],
                     correctAnswer: 0
                 },
                 {
-                    question: "How does Speaker A feel about this?",
+                    question: "What does Speaker A say about pork?",
                     options: [
-                        "Happy",
-                        "Indifferent",
-                        "Disappointed",
-                        "Surprised"
+                        "They also like pork",
+                        "They don't like pork",
+                        "They prefer chicken",
+                        "They never eat pork"
+                    ],
+                    correctAnswer: 0
+                }
+            ],
+            [
+                {
+                    question: "What drinks do they want?",
+                    options: [
+                        "Juice and coffee",
+                        "Tea and water",
+                        "Beer and wine",
+                        "Milk and juice"
                     ],
                     correctAnswer: 0
                 },
                 {
-                    question: "What is Speaker A doing with Chinese?",
+                    question: "Who wants juice?",
                     options: [
-                        "Teaching it",
-                        "Learning it",
-                        "Forgetting it",
-                        "Translating it"
+                        "Speaker B",
+                        "Speaker A",
+                        "Both",
+                        "Neither"
                     ],
-                    correctAnswer: 1
+                    correctAnswer: 0
                 }
             ]
         ];
 
-        // Vocabulary to highlight
+        // Food and drink vocabulary to highlight
         const vocabWords = [
-            "你", "他", "她", "我", "我们", "你们", "他们", "都", "也", 
-            "你好", "再见", "学习", "写", "说", "问题", "不", "是", "不是"
+            "米饭", "面条", "面包", "饺子", "包子", "鸡肉", "牛肉", "猪肉", "鱼", 
+            "蔬菜", "水果", "苹果", "香蕉", "水", "茶", "咖啡", "牛奶", "果汁", 
+            "啤酒", "红酒", "吃", "喝", "要", "喜欢", "想", "可以", "给我", "买"
         ];
 
         let currentConversationIndex = 0;

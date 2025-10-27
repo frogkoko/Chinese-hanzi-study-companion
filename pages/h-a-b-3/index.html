@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chinese A/B Conversations - Food & Drink</title>
+    <title>Chinese A/B Conversations - Family Members</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -293,11 +293,11 @@
 <body>
     <div class="container">
         <header>
-            <a href="../index.html" class="back-btn">
+            <a href="../../index.html" class="back-btn">
                 <i class="fas fa-arrow-left"></i>
             </a>
-            <h1>Chinese A/B Conversations - Food & Drink</h1>
-            <p class="subtitle">Practice food and drink conversations with Text-to-Speech</p>
+            <h1>Chinese A/B Conversations - Family Members</h1>
+            <p class="subtitle">Practice family-related conversations with Text-to-Speech</p>
         </header>
         
         <div class="voice-info">
@@ -340,429 +340,593 @@
             <p><strong>Next/Previous:</strong> Navigate through the conversation.</p>
             <p><strong>Take Test:</strong> Test your understanding of the current conversation.</p>
             <p><strong>Reset:</strong> Start the conversation from the beginning.</p>
-            <p><strong>Vocabulary:</strong> Key food and drink words are highlighted in yellow for easier learning.</p>
+            <p><strong>Vocabulary:</strong> Key family-related words are highlighted in yellow for easier learning.</p>
         </div>
     </div>
     <script>
         const conversations = [
-            // Food and Drink Conversations
+            // Family Member Conversations
             [
-                { speaker: 'a', text: "你想吃什么？" },
-                { speaker: 'b', text: "我想吃米饭和鸡肉。" },
-                { speaker: 'a', text: "好的，我也想吃米饭。" }
+                { speaker: 'a', text: "你有哥哥吗？" },
+                { speaker: 'b', text: "我有一个哥哥。" },
+                { speaker: 'a', text: "我也有一个哥哥。" }
             ],
             [
-                { speaker: 'a', text: "你想喝什么？" },
-                { speaker: 'b', text: "我想喝茶。" },
-                { speaker: 'a', text: "我喜欢喝咖啡。" }
+                { speaker: 'a', text: "你有姐姐吗？" },
+                { speaker: 'b', text: "我没有姐姐。" },
+                { speaker: 'a', text: "我有一个姐姐。" }
             ],
             [
-                { speaker: 'a', text: "我可以要一杯水吗？" },
-                { speaker: 'b', text: "当然可以。给你。" },
-                { speaker: 'a', text: "谢谢！" }
+                { speaker: 'a', text: "你有弟弟吗？" },
+                { speaker: 'b', text: "我有一个弟弟。" },
+                { speaker: 'a', text: "我没有弟弟。" }
             ],
             [
-                { speaker: 'a', text: "你喜欢吃什么水果？" },
-                { speaker: 'b', text: "我喜欢吃苹果和香蕉。" },
-                { speaker: 'a', text: "我也喜欢吃水果。" }
+                { speaker: 'a', text: "你有妹妹吗？" },
+                { speaker: 'b', text: "我没有妹妹。" },
+                { speaker: 'a', text: "我有一个妹妹。" }
             ],
             [
-                { speaker: 'a', text: "给我一碗面条。" },
-                { speaker: 'b', text: "好的，马上来。" },
-                { speaker: 'a', text: "谢谢！" }
+                { speaker: 'a', text: "你有几个哥哥？" },
+                { speaker: 'b', text: "我有一个哥哥。" },
+                { speaker: 'a', text: "我有两个哥哥。" }
             ],
             [
-                { speaker: 'a', text: "我买三个包子。" },
-                { speaker: 'b', text: "好的，一共十元。" },
-                { speaker: 'a', text: "给你钱。" }
+                { speaker: 'a', text: "你有几个姐姐？" },
+                { speaker: 'b', text: "我没有姐姐。" },
+                { speaker: 'a', text: "我有一个姐姐。" }
             ],
             [
-                { speaker: 'a', text: "你想吃饺子吗？" },
-                { speaker: 'b', text: "是的，我喜欢吃饺子。" },
-                { speaker: 'a', text: "我也喜欢吃饺子。" }
+                { speaker: 'a', text: "他有弟弟吗？" },
+                { speaker: 'b', text: "他没有弟弟。" },
+                { speaker: 'a', text: "他有一个妹妹。" }
             ],
             [
-                { speaker: 'a', text: "你喜欢喝果汁吗？" },
-                { speaker: 'b', text: "是的，我喜欢喝果汁。" },
-                { speaker: 'a', text: "我喜欢喝牛奶和果汁。" }
+                { speaker: 'a', text: "她有妹妹吗？" },
+                { speaker: 'b', text: "她没有妹妹。" },
+                { speaker: 'a', text: "她有一个姐姐。" }
             ],
             [
-                { speaker: 'a', text: "我可以买牛肉和蔬菜吗？" },
-                { speaker: 'b', text: "当然可以。" },
-                { speaker: 'a', text: "太好了，谢谢！" }
+                { speaker: 'a', text: "他们没有妹妹。" },
+                { speaker: 'b', text: "他们有两个哥哥。" },
+                { speaker: 'a', text: "他们家有五口人。" }
             ],
             [
-                { speaker: 'a', text: "你想喝啤酒还是红酒？" },
-                { speaker: 'b', text: "我想喝啤酒。" },
-                { speaker: 'a', text: "好的，我也喝啤酒。" }
+                { speaker: 'a', text: "你家有几口人？" },
+                { speaker: 'b', text: "我家有四口人。" },
+                { speaker: 'a', text: "我家有五口人。" }
             ],
             [
-                { speaker: 'a', text: "你吃鱼吗？" },
-                { speaker: 'b', text: "是的，我吃鱼。" },
-                { speaker: 'a', text: "我喜欢吃鱼和蔬菜。" }
+                { speaker: 'a', text: "他家有几口人？" },
+                { speaker: 'b', text: "他家有三口人。" },
+                { speaker: 'a', text: "他家有爸爸、妈妈和他。" }
             ],
             [
-                { speaker: 'a', text: "你想吃面包吗？" },
-                { speaker: 'b', text: "不，我不喜欢吃面包。" },
-                { speaker: 'a', text: "我喜欢吃面包。" }
+                { speaker: 'a', text: "你家有谁？" },
+                { speaker: 'b', text: "我家有爸爸、妈妈、哥哥和我。" },
+                { speaker: 'a', text: "我家有爸爸、妈妈、姐姐和我。" }
             ],
             [
-                { speaker: 'a', text: "我可以要一杯茶吗？" },
-                { speaker: 'b', text: "当然可以。给你茶。" },
-                { speaker: 'a', text: "谢谢！" }
+                { speaker: 'a', text: "你有爷爷奶奶吗？" },
+                { speaker: 'b', text: "我有爷爷奶奶。" },
+                { speaker: 'a', text: "我也有爷爷奶奶。" }
             ],
             [
-                { speaker: 'a', text: "你喜欢吃什么？" },
-                { speaker: 'b', text: "我喜欢吃猪肉和米饭。" },
-                { speaker: 'a', text: "我也喜欢吃猪肉。" }
+                { speaker: 'a', text: "你有外公外婆吗？" },
+                { speaker: 'b', text: "我有外公外婆。" },
+                { speaker: 'a', text: "我没有外公外婆。" }
             ],
             [
-                { speaker: 'a', text: "你想喝什么饮料？" },
-                { speaker: 'b', text: "我想喝果汁。" },
-                { speaker: 'a', text: "我想喝咖啡。" }
+                { speaker: 'a', text: "你家在哪里？" },
+                { speaker: 'b', text: "我家在北京。" },
+                { speaker: 'a', text: "我家在上海。" }
             ]
         ];
 
         // Test questions for each conversation
         const testQuestions = [
-            // Tests for food and drink conversations
+            // Tests for conversation 1
             [
                 {
-                    question: "What does Speaker B want to eat?",
+                    question: "What is Speaker A asking?",
                     options: [
-                        "Rice and chicken",
-                        "Noodles and beef",
-                        "Dumplings and vegetables",
-                        "Bread and fruit"
+                        "Do you have an older brother?",
+                        "Do you have an older sister?",
+                        "Do you have a younger brother?",
+                        "Do you have a younger sister?"
                     ],
                     correctAnswer: 0
                 },
                 {
-                    question: "What does Speaker A want to eat?",
+                    question: "What does the word '有' mean?",
                     options: [
-                        "Rice",
-                        "Noodles",
-                        "Dumplings",
-                        "Bread"
+                        "To have",
+                        "To be",
+                        "To want",
+                        "To like"
+                    ],
+                    correctAnswer: 0
+                },
+                {
+                    question: "Why is '吗' used in the first question but not in the answer?",
+                    options: [
+                        "'吗' is used to form yes/no questions but not in statements",
+                        "'吗' is only used by Speaker A",
+                        "'吗' means 'older brother'",
+                        "'吗' is optional in Chinese"
                     ],
                     correctAnswer: 0
                 }
             ],
+            // Tests for conversation 2
             [
                 {
-                    question: "What does Speaker B want to drink?",
+                    question: "What is Speaker A asking?",
                     options: [
-                        "Tea",
-                        "Coffee",
-                        "Water",
-                        "Juice"
+                        "Do you have an older sister?",
+                        "Do you have an older brother?",
+                        "Do you have a younger sister?",
+                        "Do you have a younger brother?"
                     ],
                     correctAnswer: 0
                 },
                 {
-                    question: "What does Speaker A like to drink?",
+                    question: "Who do you refer to as '姐姐'?",
                     options: [
-                        "Coffee",
-                        "Tea",
-                        "Water",
-                        "Juice"
+                        "Older sister",
+                        "Younger sister",
+                        "Older brother",
+                        "Younger brother"
+                    ],
+                    correctAnswer: 0
+                },
+                {
+                    question: "What does Speaker B mean by '我没有姐姐'?",
+                    options: [
+                        "I don't have an older sister",
+                        "I have an older sister",
+                        "I want an older sister",
+                        "I like my older sister"
                     ],
                     correctAnswer: 0
                 }
             ],
+            // Tests for conversation 3
             [
                 {
-                    question: "What does Speaker A ask for?",
+                    question: "What is Speaker A asking?",
                     options: [
-                        "A glass of water",
-                        "A cup of tea",
-                        "A bottle of beer",
-                        "A glass of juice"
+                        "Do you have a younger brother?",
+                        "Do you have an older brother?",
+                        "Do you have a younger sister?",
+                        "Do you have an older sister?"
                     ],
                     correctAnswer: 0
                 },
                 {
-                    question: "How does Speaker B respond?",
+                    question: "What does '弟弟' mean?",
                     options: [
-                        "Of course, here you are",
-                        "No, we don't have water",
-                        "Wait a moment",
-                        "That will cost money"
+                        "Younger brother",
+                        "Older brother",
+                        "Younger sister",
+                        "Older sister"
+                    ],
+                    correctAnswer: 0
+                },
+                {
+                    question: "What is the difference between '哥哥' and '弟弟'?",
+                    options: [
+                        "'哥哥' is older brother, '弟弟' is younger brother",
+                        "'哥哥' is younger brother, '弟弟' is older brother",
+                        "They both mean brother",
+                        "'哥哥' is formal, '弟弟' is informal"
                     ],
                     correctAnswer: 0
                 }
             ],
+            // Tests for conversation 4
             [
                 {
-                    question: "What fruits does Speaker B like?",
+                    question: "What is Speaker A asking?",
                     options: [
-                        "Apples and bananas",
-                        "Oranges and grapes",
-                        "Apples and oranges",
-                        "Bananas and grapes"
+                        "Do you have a younger sister?",
+                        "Do you have an older sister?",
+                        "Do you have a younger brother?",
+                        "Do you have an older brother?"
                     ],
                     correctAnswer: 0
                 },
                 {
-                    question: "What does Speaker A say about fruit?",
+                    question: "What does '妹妹' mean?",
                     options: [
-                        "They also like to eat fruit",
-                        "They don't like fruit",
-                        "They prefer vegetables",
-                        "They only eat apples"
+                        "Younger sister",
+                        "Older sister",
+                        "Younger brother",
+                        "Older brother"
+                    ],
+                    correctAnswer: 0
+                },
+                {
+                    question: "Why does Speaker A say '我有一个妹妹' without using '吗'?",
+                    options: [
+                        "Because it's a statement, not a question",
+                        "Because '妹妹' doesn't need '吗'",
+                        "Because Speaker A is female",
+                        "Because it's a short answer"
                     ],
                     correctAnswer: 0
                 }
             ],
+            // Tests for conversation 5
             [
                 {
-                    question: "What does Speaker A ask for?",
+                    question: "What is Speaker A asking?",
                     options: [
-                        "A bowl of noodles",
-                        "A plate of dumplings",
-                        "A glass of water",
-                        "A cup of tea"
+                        "How many older brothers do you have?",
+                        "How many older sisters do you have?",
+                        "How many younger brothers do you have?",
+                        "How many younger sisters do you have?"
                     ],
                     correctAnswer: 0
                 },
                 {
-                    question: "How does Speaker B respond?",
+                    question: "What does '几个' mean in this context?",
                     options: [
-                        "Okay, coming right away",
-                        "We don't have noodles",
-                        "That will be 10 yuan",
-                        "Wait a moment please"
+                        "How many",
+                        "Which ones",
+                        "What kind",
+                        "How old"
+                    ],
+                    correctAnswer: 0
+                },
+                {
+                    question: "Why isn't '吗' used in '你有几个哥哥？'?",
+                    options: [
+                        "Because it's a question word question, not a yes/no question",
+                        "Because '几个' replaces '吗'",
+                        "Because it's a statement",
+                        "Because '哥哥' doesn't need '吗'"
                     ],
                     correctAnswer: 0
                 }
             ],
+            // Tests for conversation 6
             [
                 {
-                    question: "What does Speaker A want to buy?",
+                    question: "What is Speaker A asking?",
                     options: [
-                        "Three steamed buns",
-                        "Three apples",
-                        "Three bottles of water",
-                        "Three bowls of noodles"
+                        "How many older sisters do you have?",
+                        "How many older brothers do you have?",
+                        "How many younger sisters do you have?",
+                        "How many younger brothers do you have?"
                     ],
                     correctAnswer: 0
                 },
                 {
-                    question: "How much does it cost?",
+                    question: "What is the measure word for people in '几口人'?",
                     options: [
-                        "10 yuan",
-                        "5 yuan",
-                        "15 yuan",
-                        "20 yuan"
+                        "口",
+                        "个",
+                        "位",
+                        "名"
+                    ],
+                    correctAnswer: 0
+                },
+                {
+                    question: "What does '没有' mean?",
+                    options: [
+                        "To not have",
+                        "To have",
+                        "To want",
+                        "To like"
                     ],
                     correctAnswer: 0
                 }
             ],
+            // Tests for conversation 7
             [
                 {
-                    question: "What food are they talking about?",
+                    question: "What is Speaker A asking about 'him'?",
                     options: [
-                        "Dumplings",
-                        "Noodles",
-                        "Rice",
-                        "Bread"
+                        "Does he have a younger brother?",
+                        "Does he have an older brother?",
+                        "Does he have a younger sister?",
+                        "Does he have an older sister?"
                     ],
                     correctAnswer: 0
                 },
                 {
-                    question: "Do both speakers like this food?",
+                    question: "What does '他' mean?",
                     options: [
-                        "Yes",
-                        "No",
-                        "Only Speaker A",
-                        "Only Speaker B"
+                        "He/him",
+                        "She/her",
+                        "They/them",
+                        "I/me"
+                    ],
+                    correctAnswer: 0
+                },
+                {
+                    question: "Why is '吗' used in this question?",
+                    options: [
+                        "Because it's a yes/no question about someone else",
+                        "Because '他' requires '吗'",
+                        "Because it's a formal question",
+                        "Because Speaker A is unsure"
                     ],
                     correctAnswer: 0
                 }
             ],
+            // Tests for conversation 8
             [
                 {
-                    question: "What does Speaker B like to drink?",
+                    question: "What is Speaker A asking about 'her'?",
                     options: [
-                        "Juice",
-                        "Milk",
-                        "Coffee",
-                        "Tea"
+                        "Does she have a younger sister?",
+                        "Does she have an older sister?",
+                        "Does she have a younger brother?",
+                        "Does she have an older brother?"
                     ],
                     correctAnswer: 0
                 },
                 {
-                    question: "What does Speaker A like to drink?",
+                    question: "What does '她' mean?",
                     options: [
-                        "Milk and juice",
-                        "Coffee and tea",
-                        "Water and juice",
-                        "Beer and wine"
+                        "She/her",
+                        "He/him",
+                        "They/them",
+                        "I/me"
+                    ],
+                    correctAnswer: 0
+                },
+                {
+                    question: "What is the pattern for asking if someone has something?",
+                    options: [
+                        "[Person] 有 [thing] 吗?",
+                        "[Person] 吗 有 [thing]?",
+                        "有 [Person] [thing] 吗?",
+                        "[thing] 有 [Person] 吗?"
                     ],
                     correctAnswer: 0
                 }
             ],
+            // Tests for conversation 9
             [
                 {
-                    question: "What does Speaker A want to buy?",
+                    question: "What don't 'they' have?",
                     options: [
-                        "Beef and vegetables",
-                        "Chicken and rice",
-                        "Pork and noodles",
-                        "Fish and fruit"
+                        "Younger sisters",
+                        "Older brothers",
+                        "Parents",
+                        "Grandparents"
                     ],
                     correctAnswer: 0
                 },
                 {
-                    question: "How does Speaker B respond?",
+                    question: "What does '他们' mean?",
                     options: [
-                        "Of course",
-                        "No, we don't have that",
-                        "That's too expensive",
-                        "Come back later"
+                        "They/them",
+                        "He/him",
+                        "She/her",
+                        "We/us"
+                    ],
+                    correctAnswer: 0
+                },
+                {
+                    question: "What is the measure word used for counting family members?",
+                    options: [
+                        "口",
+                        "个",
+                        "位",
+                        "名"
                     ],
                     correctAnswer: 0
                 }
             ],
+            // Tests for conversation 10
             [
                 {
-                    question: "What drinks are mentioned?",
+                    question: "What is Speaker A asking?",
                     options: [
-                        "Beer and red wine",
-                        "Beer and juice",
-                        "Red wine and coffee",
-                        "Coffee and tea"
+                        "How many people are in your family?",
+                        "Where is your home?",
+                        "Who is in your family?",
+                        "Do you have siblings?"
                     ],
                     correctAnswer: 0
                 },
                 {
-                    question: "What does Speaker B choose?",
+                    question: "What does '人' mean in '几口人'?",
                     options: [
-                        "Beer",
-                        "Red wine",
-                        "Juice",
-                        "Water"
+                        "Person/people",
+                        "Family",
+                        "Home",
+                        "Relative"
+                    ],
+                    correctAnswer: 0
+                },
+                {
+                    question: "Why isn't '吗' used in '你家有几口人？'?",
+                    options: [
+                        "Because it uses a question word '几'",
+                        "Because it's about family",
+                        "Because '人' replaces '吗'",
+                        "Because it's a statement"
                     ],
                     correctAnswer: 0
                 }
             ],
+            // Tests for conversation 11
             [
                 {
-                    question: "What food are they discussing?",
+                    question: "What is Speaker A asking about 'his' family?",
                     options: [
-                        "Fish",
-                        "Chicken",
-                        "Beef",
-                        "Pork"
+                        "How many people are in his family?",
+                        "Where is his home?",
+                        "Who is in his family?",
+                        "Does he have siblings?"
                     ],
                     correctAnswer: 0
                 },
                 {
-                    question: "What does Speaker A like to eat?",
+                    question: "What does '爸爸' mean?",
                     options: [
-                        "Fish and vegetables",
-                        "Fish and rice",
-                        "Fish and noodles",
-                        "Fish and fruit"
+                        "Father",
+                        "Mother",
+                        "Grandfather",
+                        "Grandmother"
+                    ],
+                    correctAnswer: 0
+                },
+                {
+                    question: "What does '妈妈' mean?",
+                    options: [
+                        "Mother",
+                        "Father",
+                        "Grandmother",
+                        "Grandfather"
                     ],
                     correctAnswer: 0
                 }
             ],
+            // Tests for conversation 12
             [
                 {
-                    question: "Does Speaker B like bread?",
+                    question: "What is Speaker A asking?",
                     options: [
-                        "No",
-                        "Yes",
-                        "Only sometimes",
-                        "It's not mentioned"
+                        "Who is in your family?",
+                        "How many people are in your family?",
+                        "Where is your home?",
+                        "Do you have grandparents?"
                     ],
                     correctAnswer: 0
                 },
                 {
-                    question: "What does Speaker A say about bread?",
+                    question: "What does '谁' mean?",
                     options: [
-                        "They like bread",
-                        "They don't like bread",
-                        "They prefer rice",
-                        "They never eat bread"
+                        "Who",
+                        "What",
+                        "Where",
+                        "How many"
+                    ],
+                    correctAnswer: 0
+                },
+                {
+                    question: "Why isn't '吗' used in '你家有谁？'?",
+                    options: [
+                        "Because it uses a question word '谁'",
+                        "Because it's an informal question",
+                        "Because '谁' replaces '吗'",
+                        "Because it's about family"
                     ],
                     correctAnswer: 0
                 }
             ],
+            // Tests for conversation 13
             [
                 {
-                    question: "What does Speaker A ask for?",
+                    question: "What is Speaker A asking?",
                     options: [
-                        "A cup of tea",
-                        "A glass of water",
-                        "A bottle of beer",
-                        "A glass of juice"
+                        "Do you have grandparents?",
+                        "Do you have siblings?",
+                        "Do you have parents?",
+                        "Where is your home?"
                     ],
                     correctAnswer: 0
                 },
                 {
-                    question: "What does Speaker B give them?",
+                    question: "What does '爷爷' mean?",
                     options: [
-                        "Tea",
-                        "Water",
-                        "Coffee",
-                        "Juice"
+                        "Paternal grandfather",
+                        "Maternal grandfather",
+                        "Paternal grandmother",
+                        "Maternal grandmother"
+                    ],
+                    correctAnswer: 0
+                },
+                {
+                    question: "What does '奶奶' mean?",
+                    options: [
+                        "Paternal grandmother",
+                        "Maternal grandmother",
+                        "Paternal grandfather",
+                        "Maternal grandfather"
                     ],
                     correctAnswer: 0
                 }
             ],
+            // Tests for conversation 14
             [
                 {
-                    question: "What does Speaker B like to eat?",
+                    question: "What is Speaker A asking about?",
                     options: [
-                        "Pork and rice",
-                        "Chicken and noodles",
-                        "Beef and vegetables",
-                        "Fish and fruit"
+                        "Maternal grandparents",
+                        "Paternal grandparents",
+                        "Siblings",
+                        "Parents"
                     ],
                     correctAnswer: 0
                 },
                 {
-                    question: "What does Speaker A say about pork?",
+                    question: "What does '外公' mean?",
                     options: [
-                        "They also like pork",
-                        "They don't like pork",
-                        "They prefer chicken",
-                        "They never eat pork"
+                        "Maternal grandfather",
+                        "Paternal grandfather",
+                        "Maternal grandmother",
+                        "Paternal grandmother"
+                    ],
+                    correctAnswer: 0
+                },
+                {
+                    question: "What does '外婆' mean?",
+                    options: [
+                        "Maternal grandmother",
+                        "Paternal grandmother",
+                        "Maternal grandfather",
+                        "Paternal grandfather"
                     ],
                     correctAnswer: 0
                 }
             ],
+            // Tests for conversation 15
             [
                 {
-                    question: "What drinks do they want?",
+                    question: "What is Speaker A asking?",
                     options: [
-                        "Juice and coffee",
-                        "Tea and water",
-                        "Beer and wine",
-                        "Milk and juice"
+                        "Where is your home?",
+                        "How many people are in your family?",
+                        "Who is in your family?",
+                        "Do you have siblings?"
                     ],
                     correctAnswer: 0
                 },
                 {
-                    question: "Who wants juice?",
+                    question: "What does '哪里' mean?",
                     options: [
-                        "Speaker B",
-                        "Speaker A",
-                        "Both",
-                        "Neither"
+                        "Where",
+                        "Who",
+                        "What",
+                        "How many"
+                    ],
+                    correctAnswer: 0
+                },
+                {
+                    question: "Why isn't '吗' used in '你家在哪里？'?",
+                    options: [
+                        "Because it uses a question word '哪里'",
+                        "Because it's about location",
+                        "Because '哪里' replaces '吗'",
+                        "Because it's a simple question"
                     ],
                     correctAnswer: 0
                 }
             ]
         ];
 
-        // Food and drink vocabulary to highlight
+        // Family vocabulary to highlight
         const vocabWords = [
-            "米饭", "面条", "面包", "饺子", "包子", "鸡肉", "牛肉", "猪肉", "鱼", 
-            "蔬菜", "水果", "苹果", "香蕉", "水", "茶", "咖啡", "牛奶", "果汁", 
-            "啤酒", "红酒", "吃", "喝", "要", "喜欢", "想", "可以", "给我", "买"
+            "哥哥", "姐姐", "弟弟", "妹妹", "有", "没有", "几个", 
+            "他", "她", "他们", "家", "口", "人", "爸爸", "妈妈", 
+            "爷爷", "奶奶", "外公", "外婆", "在", "哪里", "北京", "上海"
         ];
 
         let currentConversationIndex = 0;

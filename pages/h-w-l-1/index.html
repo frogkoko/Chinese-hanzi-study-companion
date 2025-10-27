@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chinese Verbs & Demonstratives Practice</title>
+    <title>汉字 - Chinese Characters (Hanzi) Practice</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Noto+Serif+SC:wght@400;700&display=swap" rel="stylesheet">
     <style>
         * {
@@ -205,15 +205,8 @@
             margin-bottom: 40px;
         }
 
-        #common-phrases-grid {
+        #phrases-grid {
             grid-template-columns: 1fr;
-        }
-
-        /* Questions section - one card per row */
-        #questions-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
         }
 
         .card {
@@ -225,12 +218,6 @@
             display: flex;
             flex-direction: column;
             border: 1px solid #f0f0f0;
-        }
-
-        /* Question cards - full width */
-        .question-card {
-            width: 100%;
-            max-width: 100%;
         }
 
         .card:hover {
@@ -251,11 +238,6 @@
             cursor: crosshair;
             background: white;
             touch-action: none;
-        }
-
-        /* Larger canvas for question cards */
-        .question-card .paint {
-            height: 300px;
         }
 
         .erase-button {
@@ -324,18 +306,6 @@
             margin-top: 8px;
         }
 
-        /* Question card specific styles */
-        .question-card .chinese-char {
-            font-size: 2.5rem;
-            word-wrap: break-word;
-            line-height: 1.6;
-        }
-
-        .question-card .char-info {
-            font-size: 1.1rem;
-            margin-top: 10px;
-        }
-
         @media (min-width: 992px) {
             .cards {
                 grid-template-columns: repeat(3, 1fr);
@@ -380,10 +350,6 @@
             .tts-controls {
                 flex-direction: column;
             }
-
-            .question-card .chinese-char {
-                font-size: 2rem;
-            }
         }
 
         @media (max-width: 576px) {
@@ -398,29 +364,25 @@
             .header h1 {
                 font-size: 2rem;
             }
-
-            .question-card .chinese-char {
-                font-size: 1.8rem;
-            }
         }
     </style>
 </head>
 <body>
     <div class="main">
         <div class="header">
-            <h1><br>Chinese Verbs & Demonstratives Practice</h1>
+            <h1><br>Learn Chinese Characters (Hanzi)</h1>
             <p>Draw in the white canvas area to practice writing</p>
             <p>Click on characters to hear pronunciation</p>
         </div>
         
         <div class="sticky-nav-container">
             <div class="nav-content">
-                <a href="../index.html" class="back-button">← Back to Main</a>
+                <a href="../../index.html" class="back-button">← Back to Main</a>
                 <nav id="navbar">
-                    <a class="active" href="#verbs">Verbs</a>
-                    <a href="#demonstratives">Demonstratives</a>
-                    <a href="#example-sentences">Example Sentences</a>
-                    <a href="#questions">Questions</a>
+                    <a class="active" href="#pronouns">Pronouns</a>
+                    <a href="#common-words">Common Words</a>
+                    <a href="#questions">Questions & Answers</a>
+                    <a href="#phrases">Common Phrases</a>
                 </nav>
             </div>
         </div>
@@ -435,86 +397,84 @@
         </div>
         <p class="tts-info">Click on any character to hear its pronunciation (I prefer Hanhan or Yaoyao's voice)</p>
         
-        <section id="verbs">
-            <h2 class="section-title">Verbs<br/>动词</h2>
-            <ul class="cards" id="verbs-grid"></ul>
+        <section id="pronouns">
+            <h2 class="section-title">Pronouns<br/>我 你 他 她 我们 他们 都</h2>
+            <ul class="cards" id="pronouns-grid"></ul>
         </section>
 
-        <section id="demonstratives">
-            <h2 class="section-title">Demonstratives<br/>指示词</h2>
-            <ul class="cards" id="demonstratives-grid"></ul>
-        </section>
-
-        <section id="example-sentences">
-            <h2 class="section-title">Example Sentences<br/>例句</h2>
-            <ul class="cards" id="example-sentences-grid"></ul>
+        <section id="common-words">
+            <h2 class="section-title">Common Words<br/>也 你好 再见 学习 写 说 们</h2>
+            <ul class="cards" id="common-words-grid"></ul>
         </section>
 
         <section id="questions">
-            <h2 class="section-title">Questions<br/>问题</h2>
+            <h2 class="section-title">Questions & Answers<br/>问题 不 是 不是</h2>
             <ul class="cards" id="questions-grid"></ul>
+        </section>
+
+        <section id="phrases">
+            <h2 class="section-title">Common Phrases<br/>Practice Writing Full Phrases</h2>
+            <ul class="cards" id="phrases-grid"></ul>
         </section>
     </div>
 
     <script>
         const characters = {
-            verbs: [
-                { char: '爱', pinyin: 'ài', meaning: 'to love' },
-                { char: '恨', pinyin: 'hèn', meaning: 'to hate' },
-                { char: '吃', pinyin: 'chī', meaning: 'to eat' },
-                { char: '要', pinyin: 'yào', meaning: 'to want' },
-                { char: '是', pinyin: 'shì', meaning: 'to be' },
-                { char: '睡觉', pinyin: 'shuìjiào', meaning: 'to sleep' },
-                { char: '住', pinyin: 'zhù', meaning: 'to live' },
-                { char: '去', pinyin: 'qù', meaning: 'to go' },
-                { char: '喜欢', pinyin: 'xǐhuān', meaning: 'to like' },
-                { char: '喝', pinyin: 'hē', meaning: 'to drink' },
-                { char: '买', pinyin: 'mǎi', meaning: 'to buy' },
-                { char: '说', pinyin: 'shuō', meaning: 'to speak/say' }
+            pronouns: [
+                { char: '我', pinyin: 'wǒ', meaning: 'I, me' },
+                { char: '你', pinyin: 'nǐ', meaning: 'you' },
+                { char: '他', pinyin: 'tā', meaning: 'he, him' },
+                { char: '她', pinyin: 'tā', meaning: 'she, her' },
+                { char: '我们', pinyin: 'wǒmen', meaning: 'we, us' },
+                { char: '他们', pinyin: 'tāmen', meaning: 'they, them (male/mixed)' },
+                { char: '她们', pinyin: 'tāmen', meaning: 'they, them (female)' },
+                { char: '都', pinyin: 'dōu', meaning: 'all' },
+                { char: '们', pinyin: 'men', meaning: 'plural marker' }
             ],
-            demonstratives: [
-                { char: '这', pinyin: 'zhè', meaning: 'this' },
-                { char: '那', pinyin: 'nà', meaning: 'that' },
-                { char: '这些', pinyin: 'zhèxiē', meaning: 'these' },
-                { char: '那些', pinyin: 'nàxiē', meaning: 'those' },
-                { char: '这个', pinyin: 'zhège', meaning: 'this one' },
-                { char: '那个', pinyin: 'nàge', meaning: 'that one' },
-                { char: '这里', pinyin: 'zhèlǐ', meaning: 'here' },
-                { char: '那里', pinyin: 'nàlǐ', meaning: 'there' }
+            commonWords: [
+                { char: '也', pinyin: 'yě', meaning: 'also, too' },
+                { char: '你好', pinyin: 'nǐ hǎo', meaning: 'hello' },
+                { char: '再见', pinyin: 'zàijiàn', meaning: 'goodbye' },
+                { char: '学习', pinyin: 'xuéxí', meaning: 'learn, study' },
+                { char: '写', pinyin: 'xiě', meaning: 'write' },
+                { char: '说', pinyin: 'shuō', meaning: 'speak, say' },
+                { char: '听', pinyin: 'tīng', meaning: 'listen' },
+                { char: '读', pinyin: 'dú', meaning: 'read' }
             ],
-            exampleSentences: [
-                { char: '我爱我的妈妈。', pinyin: 'Wǒ ài wǒ de māmā.', meaning: 'I love my mom.' },
-                { char: '我恨鱼。', pinyin: 'Wǒ hèn yú.', meaning: 'I hate fish.' },
-                { char: '我吃三文鱼。', pinyin: 'Wǒ chī sānwényú.', meaning: 'I eat salmon.' },
-                { char: '我想去商店。', pinyin: 'Wǒ xiǎng qù shāngdiàn.', meaning: 'I want to go to the store.' },
-                { char: '我想睡觉。', pinyin: 'Wǒ xiǎng shuìjiào.', meaning: 'I want to sleep.' },
-                { char: '我是玲玲。', pinyin: 'Wǒ shì Línglíng.', meaning: 'I am Lingling.' },
-                { char: '我回家。', pinyin: 'Wǒ huí jiā.', meaning: 'I am going home.' },
-                { char: '我喜欢你。', pinyin: 'Wǒ xǐhuān nǐ.', meaning: 'I like you.' },
-                { char: '我喝可乐。', pinyin: 'Wǒ hē kělè.', meaning: 'I drink Cola.' },
-                { char: '我买可乐。', pinyin: 'Wǒ mǎi kělè.', meaning: 'I buy Cola.' },
-                { char: '我说中文。', pinyin: 'Wǒ shuō Zhōngwén.', meaning: 'I speak Chinese.' },
-                { char: '这是一只狗。', pinyin: 'Zhè shì yī zhī gǒu.', meaning: 'This is a dog.' },
-                { char: '那是一只猫。', pinyin: 'Nà shì yī zhī māo.', meaning: 'That is a cat.' },
-                { char: '那些是我们的狗。', pinyin: 'Nàxiē shì wǒmen de gǒu.', meaning: 'Those are our dogs.' },
-                { char: '这些是我们的猫。', pinyin: 'Zhèxiē shì wǒmen de māo.', meaning: 'These are our cats.' }
+            questions: [
+                { char: '问题', pinyin: 'wèntí', meaning: 'question, problem' },
+                { char: '什么', pinyin: 'shénme', meaning: 'what' },
+                { char: '谁', pinyin: 'shéi', meaning: 'who' },
+                { char: '哪里', pinyin: 'nǎlǐ', meaning: 'where' },
+                { char: '为什么', pinyin: 'wèishénme', meaning: 'why' },
+                { char: '怎么', pinyin: 'zěnme', meaning: 'how' },
+                { char: '不', pinyin: 'bù', meaning: 'not, no' },
+                { char: '是', pinyin: 'shì', meaning: 'yes, to be' },
+                { char: '不是', pinyin: 'bùshì', meaning: 'no, is not' }
             ],
-           questions: [
-                { char: '那是什么？', pinyin: 'Nà shì shénme?', meaning: 'What is that?' },
-                { char: '那是谁的狗？', pinyin: 'Nà shì shéi de gǒu?', meaning: 'Whose dog is that?' },
-                { char: '那是你的猫吗？', pinyin: 'Nà shì nǐ de māo ma?', meaning: 'Is that your cat?' },
-                { char: '你爱你的妈妈吗？', pinyin: 'Nǐ ài nǐ de māmā ma?', meaning: 'Do you love your mom?' },
-                { char: '你恨鱼吗？', pinyin: 'Nǐ hèn yú ma?', meaning: 'Do you hate fish?' },
-                { char: '你吃三文鱼吗？', pinyin: 'Nǐ chī sānwényú ma?', meaning: 'Do you eat salmon?' },
-                { char: '你想去商店吗？', pinyin: 'Nǐ xiǎng qù shāngdiàn ma?', meaning: 'Do you want to go to the store?' },
-                { char: '你想睡觉吗？', pinyin: 'Nǐ xiǎng shuìjiào ma?', meaning: 'Do you want to sleep?' },
-                { char: '你是玲玲吗？', pinyin: 'Nǐ shì Línglíng ma?', meaning: 'Are you Lingling?' },
-                { char: '你回家吗？', pinyin: 'Nǐ huí jiā ma?', meaning: 'Are you going home?' },
-                { char: '你喜欢我吗？', pinyin: 'Nǐ xǐhuān wǒ ma?', meaning: 'Do you like me?' },
-                { char: '你喝可乐吗？', pinyin: 'Nǐ hē kělè ma?', meaning: 'Do you drink Cola?' },
-                { char: '你买可乐吗？', pinyin: 'Nǐ mǎi kělè ma?', meaning: 'Do you buy Cola?' },
-                { char: '你说中文吗？', pinyin: 'Nǐ shuō Zhōngwén ma?', meaning: 'Do you speak Chinese?' },
-                { char: '这是一只狗吗？', pinyin: 'Zhè shì yī zhī gǒu ma?', meaning: 'Is this a dog?' }
+            phrases: [
+                { char: '你好，最近怎么样？', pinyin: 'Nǐ hǎo, zuìjìn zěnyàng?', meaning: 'Hello, how have you been lately?' },
+                { char: '我很好，谢谢。你呢？', pinyin: 'Wǒ hěn hǎo, xièxie. Nǐ ne?', meaning: 'I\'m very well, thanks. How about you?' },
+                { char: '我也挺好的。', pinyin: 'Wǒ yě tǐng hǎo de.', meaning: 'I\'m also doing quite well.' },
+                { char: '你叫什么名字？', pinyin: 'Nǐ jiào shénme míngzi?', meaning: 'What is your name?' },
+                { char: '我叫王丽。你呢？', pinyin: 'Wǒ jiào Wánglì. Nǐ ne?', meaning: 'I\'m called Wang Li. How about you?' },
+                { char: '我叫张明。', pinyin: 'Wǒ jiào Zhāngmíng.', meaning: 'I\'m called Zhang Ming.' },
+                { char: '你多大了？', pinyin: 'Nǐ duō dà le?', meaning: 'How old are you?' },
+                { char: '我二十五岁。你呢？', pinyin: 'Wǒ èrshíwǔ suì. Nǐ ne?', meaning: 'I\'m 25 years old. How about you?' },
+                { char: '我三十岁。', pinyin: 'Wǒ sānshí suì.', meaning: 'I\'m 30 years old.' },
+                { char: '你今天做了什么？', pinyin: 'Nǐ jīntiān zuò le shénme?', meaning: 'What did you do today?' },
+                { char: '我工作了，还学了中文。你呢？', pinyin: 'Wǒ gōngzuò le, háishi xuéle Zhōngwén. Nǐ ne?', meaning: 'I worked and also studied Chinese. How about you?' },
+                { char: '我去了健身房，还做了饭。', pinyin: 'Wǒ qù le jiànshēnfáng, háishi zuò le fàn.', meaning: 'I went to the gym and also cooked.' },
+                { char: '你喜欢吃什么菜？', pinyin: 'Nǐ xǐhuān chī shénme cài?', meaning: 'What kind of food do you like to eat?' },
+                { char: '我喜欢吃川菜。你呢？', pinyin: 'Wǒ xǐhuān chī chuāncài. Nǐ ne?', meaning: 'I like eating Sichuan cuisine. How about you?' },
+                { char: '我喜欢吃粤菜。', pinyin: 'Wǒ xǐhuān chī Yuècài.', meaning: 'I like eating Cantonese cuisine.' },
+                { char: '你周末有什么计划？', pinyin: 'Nǐ zhōumò yǒu shénme jìhuà?', meaning: 'What plans do you have for the weekend?' },
+                { char: '我打算去看电影。你呢？', pinyin: 'Wǒ dǎsuàn qù kàn diànyǐng. Nǐ ne?', meaning: 'I\'m planning to go watch a movie. How about you?' },
+                { char: '我可能会和朋友一起吃饭。', pinyin: 'Wǒ kěnéng huì hé péngyou yīqǐ chīfàn.', meaning: 'I might have dinner with friends.' },
+                { char: '你好，我是李明。你叫什么名字？', pinyin: 'Nǐ hǎo, wǒ shì Lǐmíng. Nǐ jiào shénme míngzi?', meaning: 'Hello, I\'m Li Ming. What\'s your name?' },
+                { char: '你好，我叫王芳。很高兴认识你。', pinyin: 'Nǐ hǎo, wǒ jiào Wángfāng. Hěn gāoxìng rènshi nǐ.', meaning: 'Hello, I\'m Wang Fang. Nice to meet you.' },
+                { char: '我也很高兴认识你。再见！', pinyin: 'Wǒ yě hěn gāoxìng rènshi nǐ. Zàijiàn!', meaning: 'I\'m also happy to meet you. Goodbye!' },
+                { char: '再见！', pinyin: 'Zàijiàn!', meaning: 'Goodbye!' }
             ]
         };
 
@@ -532,7 +492,9 @@
             );
             
             chineseVoices.forEach(voice => {
-                const option = new Option(`${voice.name} (${voice.lang})`, voice.name);
+                const option = document.createElement('option');
+                option.value = voice.name;
+                option.textContent = `${voice.name} (${voice.lang})`;
                 voiceSelector.appendChild(option);
                 
                 if (voice.name.toLowerCase().includes('hanhan') || voice.name.toLowerCase().includes('yaoyao')) {
@@ -546,9 +508,9 @@
             speechSynthesis.onvoiceschanged = loadVoices;
         }
 
-        function createCard(charData, index, isPhrase = false, isQuestion = false) {
-            const cardClass = isQuestion ? 'card question-card' : (isPhrase ? 'card phrase-card' : 'card');
-            const canvasHeight = isQuestion ? 'height="300"' : (isPhrase ? 'height="250"' : 'height="200"');
+        function createCard(charData, index, isPhrase = false) {
+            const cardClass = isPhrase ? 'card phrase-card' : 'card';
+            const canvasHeight = isPhrase ? 'height="250"' : 'height="200"';
             
             return `
                 <li class="cards_item">
@@ -567,16 +529,16 @@
         }
 
         function generateCards() {
-            const verbsGrid = document.getElementById('verbs-grid');
-            const demonstrativesGrid = document.getElementById('demonstratives-grid');
-            const exampleSentencesGrid = document.getElementById('example-sentences-grid');
+            const pronounsGrid = document.getElementById('pronouns-grid');
+            const commonWordsGrid = document.getElementById('common-words-grid');
             const questionsGrid = document.getElementById('questions-grid');
+            const phrasesGrid = document.getElementById('phrases-grid');
             
             let index = 0;
-            verbsGrid.innerHTML = characters.verbs.map(char => createCard(char, index++)).join('');
-            demonstrativesGrid.innerHTML = characters.demonstratives.map(char => createCard(char, index++)).join('');
-            exampleSentencesGrid.innerHTML = characters.exampleSentences.map(char => createCard(char, index++, true)).join('');
-            questionsGrid.innerHTML = characters.questions.map(char => createCard(char, index++, false, true)).join('');
+            pronounsGrid.innerHTML = characters.pronouns.map(char => createCard(char, index++)).join('');
+            commonWordsGrid.innerHTML = characters.commonWords.map(char => createCard(char, index++)).join('');
+            questionsGrid.innerHTML = characters.questions.map(char => createCard(char, index++)).join('');
+            phrasesGrid.innerHTML = characters.phrases.map(char => createCard(char, index++, true)).join('');
             
             addAudioEventListeners();
             addCanvasEventListeners();
@@ -621,7 +583,7 @@
             const ttsButton = document.getElementById('tts-button');
             ttsButton.disabled = true;
             
-            const allChars = [...characters.verbs, ...characters.demonstratives, ...characters.exampleSentences, ...characters.questions];
+            const allChars = [...characters.pronouns, ...characters.commonWords, ...characters.questions, ...characters.phrases];
             let index = 0;
             
             function speakNext() {
